@@ -7,10 +7,11 @@ import * as action2 from "./../actions/ketqua";
 import { Redirect } from "react-router-dom";
 function Ketqua(props) {
   var id = props.match.params.id;
-  var { QuestionStore, LayoutStore, UsersKetquaStore } = props;
+  var { QuestionStore, LayoutStore, UsersKetquaStore,iDUserStore } = props;
   useEffect(() => {
     props.getDataQuestion(id);
-    props.GET_KET_QUA();
+    props.GET_KET_QUA(iDUserStore);
+    props.GET_DATA_USER(iDUserStore);
   }, [1]);
   if (!LayoutStore) {
     return <Redirect to="/login" />;
@@ -43,16 +44,20 @@ const mapStateToProps = (state) => {
     QuestionStore: state.QuestionStore,
     LayoutStore: state.LayoutStore,
     UsersKetquaStore: state.UsersKetquaStore,
+    iDUserStore:state.iDUserStore
   };
 };
 const dispatchToProps = (dispatch, props) => {
   return {
     getDataQuestion: (id) => {
       dispatch(action.GET_QUESTION_ALL(id));
-      dispatch(action2.GET_KET_QUA_USER());
+      
     },
-    GET_KET_QUA: () => {
-      dispatch(action2.GET_KET_QUA_USER());
+    GET_DATA_USER:(idUser)=>{
+      dispatch(action2.GET_KET_QUA_USER(idUser));
+    },
+    GET_KET_QUA: (idUser) => {
+      dispatch(action2.GET_KET_QUA_USER(idUser));
     },
   };
 };

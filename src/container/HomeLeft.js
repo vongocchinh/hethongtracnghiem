@@ -16,12 +16,12 @@ import { Redirect } from 'react-router-dom';
 
 function HomeLeft(props) {
   var id = props.match.params.id;
-  var { CategoryDetailStore, MessageStore, MessageQuestion } = props;
+  var { CategoryDetailStore, MessageStore, MessageQuestion, iDUserStore} = props;
   if (MessageStore.ERROR_CODE) {
     toast.error("Ma code khong chinh xac");
   }
   const checkCode = (e) => {
-    var data = { e, idCategory:id };
+    var data = { e, idCategory:id ,iDUser:iDUserStore};
     props.getCode(data);
   };
   useEffect(() => {
@@ -66,7 +66,8 @@ const mapStateToProps = (state) => {
     MessageStore: state.MessageStore,
     KetquaStore: state.KetquaStore,
     CodeStore: state.CodeStore,
-    MessageQuestion:state.MessageQuestion
+    MessageQuestion:state.MessageQuestion,
+    iDUserStore:state.iDUserStore
   };
 };
 const dispatchToProps = (dispatch, props) => {

@@ -1,16 +1,18 @@
 import * as types from "./../constanst/category";
+
 import { db } from "./../config/fbConfig";
-import firebase from "./../config/fbConfig";
+
 
 export const GET_CATEGORY_ALL = () => {
   return (dispatch, getState, { getFirebase }) => {
     dispatch(GET_CATEGORY_ALL_ERROR());
     var data = [];
     var item;
-    var user=firebase.auth().currentUser;
-    if(user){
-      localStorage.setItem('id',JSON.stringify(user.uid));
-    }
+    // var user=firebase.auth().currentUser;
+    // if(user){
+    //   localStorage.setItem('idUser',JSON.stringify(user));  
+    //   dispatch(ID_USER(user.uid));
+    // }
     db.collection("category")
       .get()
       .then((res) => {
@@ -29,6 +31,8 @@ export const GET_CATEGORY_ALL = () => {
       });
   };
 };
+
+
 
 export const GET_CATEGORY_ALL_LOADING = () => {
   return {

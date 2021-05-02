@@ -7,6 +7,7 @@ import * as action from "../actions/question";
 import * as action2 from "../actions/category";
 import * as action3 from "../actions/result";
 import * as action4 from "../actions/ketqua";
+import * as action5 from "../actions/login";
 // import * as action4 from "../actions/ketqua";
 import Item from "./../components/question/Item";
 import { Grid } from "@material-ui/core";
@@ -18,14 +19,15 @@ function Question(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageNew] = useState(10);
   var id = props.match.params.id;
-  var { CategoryDetailStore ,QuestionStore,KetquaStore} = props;
+  var { CategoryDetailStore ,QuestionStore,KetquaStore,iDUserStore,UsersAccountStore} = props;
   useEffect(() => {
     GET_ALL_DATA();
   }, [1]);
   const GET_ALL_DATA = () => {
     props.GET_QUESTION_ALL(id);
     props.GET_CATEGORY_DETAIL(id);
-    props.GET_KET_QUA_SUCCESS();
+    props.GET_KET_QUA_SUCCESS(iDUserStore);
+    props.GET_USER(iDUserStore);
   };
   if(KetquaStore.redirectKetQua){
     props.resetStoreKetQua();
@@ -107,7 +109,7 @@ function Question(props) {
 
   const onClickResult=()=>{
 
-    props.onClickResult(id);
+    props.onClickResult({id,idUSer:iDUserStore});
   }
   return (
     <>
@@ -117,6 +119,7 @@ function Question(props) {
         showQuestion={showQuestion(QuestionStore)}
         CategoryDetailStore={CategoryDetailStore}
         onClickResult={onClickResult}
+        UsersAccountStore={UsersAccountStore}
       />
     </>
   );
@@ -127,7 +130,9 @@ const mapStateToProps = (state) => {
     QuestionStore: state.QuestionStore,
     CategoryDetailStore: state.CategoryDetailStore,
     MessageStore: state.MessageStore,
-    KetquaStore:state.KetquaStore
+    KetquaStore:state.KetquaStore,
+    iDUserStore:state.iDUserStore,
+    UsersAccountStore:state.UsersAccountStore
   };
 };
 const dispatchToProps = (dispatch, props) => {
@@ -145,12 +150,15 @@ const dispatchToProps = (dispatch, props) => {
     ADD_ARRAY_RESULT:(e)=>{
       dispatch(action3.ADD_RESULT(e));
     },
-    onClickResult:(id)=>{
-      dispatch(action3.onClickResult(id));
+    onClickResult:({id,idUSer})=>{
+      dispatch(action3.onClickResult({id,idUSer}));
       
     },
     resetStoreKetQua:()=>{
       dispatch(action4.resetStoreKetQua());
+    },
+    GET_USER:(idUser)=>{
+      dispatch(action5.USER_GET(idUser));
     }
   };
 };

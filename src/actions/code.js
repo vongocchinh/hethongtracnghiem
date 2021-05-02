@@ -4,7 +4,7 @@ import * as typesQ from '../constanst/question';
 
 
 import {db} from './../config/fbConfig';
-export const GET_CODE=({e,idCategory})=>{
+export const GET_CODE=({e,idCategory,iDUser})=>{
     return  (dispatch,getState,{getFirebase})=>{
         dispatch(GET_QUESTION_LOADING());
         db.collection("category")
@@ -13,14 +13,12 @@ export const GET_CODE=({e,idCategory})=>{
           .then((res) => {
             var codeCategory=res.data().code;
             if(codeCategory===e){
-              var user=JSON.parse(localStorage.getItem('id'));
-              if (user) {
-                db.collection("user").where('uidAuthentication','==',user).get()
+              if (iDUser) {
+                db.collection("user").where('uidAuthentication','==',iDUser).get()
                 .then((querySnapshot)=>{
                     querySnapshot.forEach(function(doc) {
                         var idU=doc.id;
                         var idCategoryUser=doc.data().rules;
-                        console.log(idCategoryUser);
                         if(idCategoryUser!==idCategory){
                           db.collection('user').doc(idU).set({
                             IDSV: doc.data().IDSV,
@@ -29,7 +27,8 @@ export const GET_CODE=({e,idCategory})=>{
                             uidAuthentication: doc.data().uidAuthentication,
                             itemR:doc.data().itemR,
                             itemW:doc.data().itemW
-                            ,count:doc.data().count
+                            ,count:doc.data().count,
+                            online:doc.data().online
                           }).then(res=>{
                             dispatch(GET_QUESTION_SUCCESS());
                           }).catch(er=>{

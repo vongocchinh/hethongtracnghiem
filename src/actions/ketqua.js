@@ -5,12 +5,11 @@ import * as types from '../constanst/question';
 import * as types1 from '../constanst/result';
 
 
-export const GET_KET_QUA_USER = () => {
+export const GET_KET_QUA_USER = (idUser) => {
     return (dispatch, getState, { getFirebase }) => {
-      var user = JSON.parse(localStorage.getItem('id'));
-      if (user) {
+      if (idUser) {
         db.collection("user")
-          .where("uidAuthentication", "==", user)
+          .where("uidAuthentication", "==", idUser)
           .get()
           .then((querySnapshot) => {
             querySnapshot.forEach(function (doc) {

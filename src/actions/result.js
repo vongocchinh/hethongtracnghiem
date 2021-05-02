@@ -10,7 +10,7 @@ export const ADD_RESULT=(e)=>{
     }
 }
 
-export const onClickResult=(id)=>{
+export const onClickResult=({id,idUSer})=>{
     return (dispatch,getState,{getFirebase})=> {
         db.collection('question').where('categoryId','==',id).get().then(res=>{
             var data=[];
@@ -32,9 +32,8 @@ export const onClickResult=(id)=>{
               }
             }
             var itemW=data.length-itemR;
-            var user=JSON.parse(localStorage.getItem('id'));
-            if (user) {
-                db.collection("user").where('uidAuthentication','==',user).get()
+            if (idUSer) {
+                db.collection("user").where('uidAuthentication','==',idUSer).get()
                 .then((querySnapshot)=>{
                     querySnapshot.forEach(function(doc) {
                         var idU=doc.id;
@@ -43,16 +42,30 @@ export const onClickResult=(id)=>{
                             fullname: doc.data().fullname,
                             rules: doc.data().rules,
                             uidAuthentication: doc.data().uidAuthentication,
-                            count,itemR,itemW
+                            count,itemR,itemW,
+                            online:doc.data().online
                         }).then(res=>{
                             var datas={
                                 IDSV: doc.data().IDSV,
                                 fullname: doc.data().fullname,
                                 rules: doc.data().rules,
                                 uidAuthentication: doc.data().uidAuthentication,
-                                count,itemR,itemW
+                                count,itemR,itemW,online:doc.data().online
                             }
                             dispatch(GET_SUUCESS(datas));
+
+
+                            db.collection('listUserCategory').add({
+                                    idUser:idU,
+                                    idCategory:doc.data().rules,
+                                    math:count,
+                                    itemR:itemR,
+                                    itemW:itemW
+                            }).then(res=>{
+
+                            }).catch(er=>{
+
+                            })
                         }).catch(er=>{
                         })
                     }

@@ -14,6 +14,7 @@ import LogouttStore from './Login/logout';
 import UsersStore from './Login/user';
 import UsersKetquaStore from './ketqua/ketqua';
 import UsersAccountStore from './user';
+import iDUserStore from './user/idUser';
 
 
 
@@ -33,6 +34,7 @@ var myReducer=combineReducers({
     UsersStore,
     MessageQuestion,
     UsersKetquaStore,
-    UsersAccountStore
+    UsersAccountStore,
+    iDUserStore
 });
 export default myReducer;
