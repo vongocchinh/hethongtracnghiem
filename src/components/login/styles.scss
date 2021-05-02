@@ -1,0 +1,143 @@
+*{
+    // // background-color: #F6F6F6;
+    // background-image: url("");
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-attachment: fixed;
+}
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    margin-left: 7%;
+    margin-right: 7%;
+    // height: 500px;
+    width: 86%;
+    .container-login-layout {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .container-login-main {
+            margin-top: 50px;
+            width: 300px;
+            height: 420px;
+            
+            z-index: 888;
+            border: 1px solid rgb(194, 187, 187);
+            // box-shadow:3px 3px 1px 1px #ccc;
+            border-radius: 7px;
+            // background-color: white;
+            -webkit-box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
+            -moz-box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
+            box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
+            .h-login{
+                font-weight: 600;
+                font-size: 24px;
+                text-align: center;
+                // background-color: white;
+                padding-top: 30px;
+            }
+            form{
+                width: 100%;
+                height: auto;
+                // background-color: white;
+                div{
+                    width: 100%;
+                    height: auto;
+                    margin-top: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // background-color: white;
+                }
+                div:nth-child(1){
+                    // margin-top: 30px;
+                    .PersonIcon{
+                        position: absolute;
+                        font-size: 18px;
+                        margin-left: 5px;
+                        margin-top: -1px;
+                    }
+                    .container-login-main-input{
+                        width: 85%;
+                        height: auto;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                    }
+                    input{
+                        width: 100%;
+                        height: 30px;
+                        outline: none;
+                        border: 1px solid #DBDBDB;
+                        padding-left: 25px;
+                        border-radius: 3px;
+                    }
+                }
+                div:nth-child(2){
+                    // margin-top: 30px;
+                    .PersonIcon{
+                        position: absolute;
+                        font-size: 18px;
+                        margin-left: 5px;
+                        margin-top: -2px;
+                    }
+                    .container-login-main-input{
+                        width: 85%;
+                        height: auto;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                    }
+                    input{
+                        width: 100%;
+                        height: 30px;
+                        outline: none;
+                        border: 1px solid #DBDBDB;
+                        padding-left: 25px;
+                        border-radius: 3px;
+
+                    }
+                }
+                div:nth-child(3){
+                    margin-top: 20px;
+                    input{
+                        width: 85%;
+                        height: 33px;
+                        background-color: #3498DB;
+                        border: none;
+                        outline: none;
+                        color: white;
+                        font-weight: 500;
+                        cursor: pointer;
+                    }
+                }
+                div:nth-child(4){
+                    margin-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    a{
+                        font-size: 13px;
+                        color: #3498DB;
+                        text-align: center;
+                        text-decoration: none;
+                    }
+                }
+                div:nth-child(5){
+                    margin-top: 0px;
+                    p{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.backdrops{
+    z-index: 9999;
+}

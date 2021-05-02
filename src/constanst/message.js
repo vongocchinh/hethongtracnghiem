@@ -1,0 +1,5 @@
+export const CODE_ERROR='CODE_ERROR';
+
+export const QUESTION_START='QUESTION_START';
+
+export const RESET_MESSAGE='RESET_MESSAGE';

@@ -1,0 +1,168 @@
+.container-title-home {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 250px;
+    height: auto;
+    // background-color: white;
+    // border: 1px solid rgb(214, 209, 209);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    border-radius: 5px;
+    margin-right: 10px;
+    .container-title-home-1{
+        width: 100%;
+        height: auto;
+        background-color: #ced6d6;
+        line-height: 0.5px;
+        p{
+            text-align: center;
+            padding: 5px;
+            font-weight: 500;
+            font-size: 15px;
+            background-color: #ced6d6;
+            color: black;
+        }
+    }
+    .time{
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 10px;
+        background-color: #FFF9E1;
+        cursor: pointer;
+        p{
+            width: 100%;
+            font-size: 25px;
+            color: #FF5722;
+            font-weight: 500;
+            text-align: center;
+            background-color: #FFF9E1;
+            margin-top: -1px;
+            padding-top: 10px;
+        }
+        button{
+            width: 80%;
+            text-decoration:none;
+            text-align: center;
+            background-color: #FF5722;
+            margin-bottom: 10px;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: -10px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+    .container-grid{
+        width: 100%;
+        height: auto;
+        clear: both;
+        border: 1px solid rgb(216, 205, 205);
+        // background-color: white;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 20px;
+        .container-grid-layout{
+            // background-color: white;
+            margin-top: 10px;
+            width: 98%;
+            height: auto;
+            .container-grid-layout-main{
+                // background-color: white;
+            }
+        }
+        .material-list-number{
+            width: 30px;
+            height: 30px;
+            background-color: #F0F0F0;
+            color: black;
+            text-align: center;
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+    
+}
+.container-main-right-home-layout{
+    width: 100%;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    // background-color: white;
+    margin-top: -10px;
+    .p{
+        padding: 10px;
+        color: red;
+        font-size: 14px;
+    }
+    .container-main-right-home-layout-math{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        background: none;
+
+        .container-main-right-home-layout-math-sb{
+            width: 97%;
+            height: auto;
+            margin-top: 10px;
+            background-color: #F5F5F5;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            p{
+                font-size: 14p;
+                font-weight: 500;
+                background-color:#F5F5F5;
+            }
+            .container-main-right-home-layout-math-ch-item{
+                width: 45%;
+                float: left;
+                height: auto;
+                padding: 10px;
+                background-color: #F5F5F5;
+                span{
+                    font-size: 14px;
+                    color: black;
+                    font-weight: 450;
+                    background-color: #F5F5F5;
+                    strong{
+                     background-color: #F5F5F5;
+                     font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .Pagination{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background-color: white;
+        margin-top: 10px;
+        color: black;
+        .Pagination-item{
+            color: black;
+            // background-color: white;
+        }
+        margin-bottom: 20px;
+    }
+}

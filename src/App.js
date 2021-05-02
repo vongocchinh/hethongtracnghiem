@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import Routers from "./router/router";
+import Header from "./container/Header";
+import Footer from "./container/Footer";
+// import Login from "./container/Login";
+import { ToastContainer } from "react-toastify";
 
-function App() {
+import "react-toastify/dist/ReactToastify.css";
+import { connect } from "react-redux";
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover={false}
+        style={{ zIndex: 9999, fontSize: 12 }}
+      />
+      <Router>
+        <>
+          <Header />
+          <Routers />
+          <Footer />
+        </>
+      </Router>
+    </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    LayoutStore: state.LayoutStore,
+  };
+};
 
-export default App;
+const dispatchToProps = (dispatch, props) => {
+  return {};
+};
+export default connect(mapStateToProps, dispatchToProps)(App);
