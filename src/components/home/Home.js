@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.scss';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+// import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 // import {Link} from 'react-router-dom';
 import RouterCategory from './../../router/routerCategory';
 export default function Home(props){

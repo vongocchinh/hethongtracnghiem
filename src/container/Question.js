@@ -20,7 +20,7 @@ function Question(props) {
   const [currentPageNew] = useState(10);
   const [times, setTimes] = useState(0)
   const [timess, setTimess] = useState(0)
-  const [idQ, setIDQ] = useState("")
+  // const [idQ, setIDQ] = useState("")
   var id = props.match.params.id;
   var {
     CategoryDetailStore,
