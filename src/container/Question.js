@@ -13,15 +13,55 @@ import Item from "./../components/question/Item";
 import { Grid } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 function Question(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageNew] = useState(10);
+  const [times, setTimes] = useState(0)
+  const [timess, setTimess] = useState(0)
   var id = props.match.params.id;
-  var { CategoryDetailStore ,QuestionStore,KetquaStore,iDUserStore,UsersAccountStore} = props;
+  var {
+    CategoryDetailStore,
+    QuestionStore,
+    KetquaStore,
+    iDUserStore,
+    UsersAccountStore,
+  } = props;
+
   useEffect(() => {
     GET_ALL_DATA();
+    if(CategoryDetailStore.data){
+      var count = (((CategoryDetailStore.data.time-1)*60));
+
+    var counter = setInterval(timer, 1000);
+    var count1=60;
+    function timer() {
+      count = count - 1;
+      var temp=count;
+      setTimes((Math.ceil(temp/60)));
+      if (count <= 0 && count1 === -1 ) {
+        props.onClickResult({ id, idUSer: iDUserStore });
+        clearInterval(counter);
+        count=0;
+        return;
+      }
+    }
+
+    setInterval(timer1, 1000);
+    function timer1() {
+      count1 = count1 - 1;
+      var temp=count1;
+      setTimess(temp);
+      if (count1 < 1 && count >= 0) {
+        count1=60;
+      }else if(count1 <= 0  && count >= 0){
+        count1=-1;
+        return ;
+      }
+    }
+
+    }
   }, [1]);
   const GET_ALL_DATA = () => {
     props.GET_QUESTION_ALL(id);
@@ -29,9 +69,9 @@ function Question(props) {
     props.GET_KET_QUA_SUCCESS(iDUserStore);
     props.GET_USER(iDUserStore);
   };
-  if(KetquaStore.redirectKetQua){
+  if (KetquaStore.redirectKetQua) {
     props.resetStoreKetQua();
-    return <Redirect to={"/ketqua/"+id} />
+    return <Redirect to={"/ketqua/" + id} />;
   }
   const showPagination = (data) => {
     if (data) {
@@ -75,11 +115,17 @@ function Question(props) {
   };
   const showQuestion = (data) => {
     var result = null;
+    var pageLast=currentPage*currentPageNew;
+    var pageFirst=pageLast- currentPageNew;
+    // data=data.slice(pageFirst,pageLast);
+    var ch=pageFirst;
+    ch--;
     result =
       data &&
       data.map((value, key) => {
+        ch++;
         return (
-          <Item key={key} onChange={onChangeResult} stt={key} value={value} />
+          <Item key={key} onChange={onChangeResult} ch={ch} stt={key} value={value} />
         );
       });
     return result;
@@ -92,7 +138,7 @@ function Question(props) {
         return (
           <Grid className="container-grid-layout-main" key={key} item>
             <Paper className="material-list-number">
-              <a onClick={() => clickItem(value.id)} href={"#" + value.id}>
+              <a onClick={() => clickItem(key)} href={"#" + value.id}>
                 {key + 1}
               </a>
             </Paper>
@@ -105,12 +151,9 @@ function Question(props) {
     props.ADD_ARRAY_RESULT(e);
   };
 
-
-
-  const onClickResult=()=>{
-
-    props.onClickResult({id,idUSer:iDUserStore});
-  }
+  const onClickResult = () => {
+    props.onClickResult({ id, idUSer: iDUserStore });
+  };
   return (
     <>
       <ThiComponent
@@ -120,6 +163,8 @@ function Question(props) {
         CategoryDetailStore={CategoryDetailStore}
         onClickResult={onClickResult}
         UsersAccountStore={UsersAccountStore}
+        times={times}
+        timess={timess}
       />
     </>
   );
@@ -130,36 +175,34 @@ const mapStateToProps = (state) => {
     QuestionStore: state.QuestionStore,
     CategoryDetailStore: state.CategoryDetailStore,
     MessageStore: state.MessageStore,
-    KetquaStore:state.KetquaStore,
-    iDUserStore:state.iDUserStore,
-    UsersAccountStore:state.UsersAccountStore
+    KetquaStore: state.KetquaStore,
+    iDUserStore: state.iDUserStore,
+    UsersAccountStore: state.UsersAccountStore,
   };
 };
 const dispatchToProps = (dispatch, props) => {
   return {
     GET_QUESTION_ALL: (id) => {
       dispatch(action.GET_QUESTION_ALL(id));
-     
     },
-    GET_KET_QUA_SUCCESS:()=>{
+    GET_KET_QUA_SUCCESS: () => {
       // dispatch(action4.GET_KET_QUA_SUCCESS());
     },
     GET_CATEGORY_DETAIL: (id) => {
       dispatch(action2.GET_CATEGORY_DETAIL(id));
     },
-    ADD_ARRAY_RESULT:(e)=>{
+    ADD_ARRAY_RESULT: (e) => {
       dispatch(action3.ADD_RESULT(e));
     },
-    onClickResult:({id,idUSer})=>{
-      dispatch(action3.onClickResult({id,idUSer}));
-      
+    onClickResult: ({ id, idUSer }) => {
+      dispatch(action3.onClickResult({ id, idUSer }));
     },
-    resetStoreKetQua:()=>{
+    resetStoreKetQua: () => {
       dispatch(action4.resetStoreKetQua());
     },
-    GET_USER:(idUser)=>{
+    GET_USER: (idUser) => {
       dispatch(action5.USER_GET(idUser));
-    }
+    },
   };
 };
 export default connect(mapStateToProps, dispatchToProps)(Question);

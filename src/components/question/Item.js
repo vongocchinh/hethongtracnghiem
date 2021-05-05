@@ -12,6 +12,7 @@ export default function Item(props) {
   };
   const showItem = (value,stt) => {
     var result = null;
+    console.log(stt);
     // value=fisherYates(value);
     if (value) {
       return (
@@ -19,8 +20,8 @@ export default function Item(props) {
           <div className="container-main-right-home-layout-math-ch-item">
             <input
               onChange={onChange}
-              id="1"
-              name={"da" + (stt + 1)}
+              id={stt}
+              name={"da" + (stt)}
               type="radio"
               value={value[0]}
             />{" "}
@@ -32,8 +33,8 @@ export default function Item(props) {
           <div className="container-main-right-home-layout-math-ch-item">
             <input
               onChange={onChange}
-              id="1"
-              name={"da" + (stt + 1)}
+              id={stt}
+              name={"da" + (stt)}
               type="radio"
               value={value[1]}
             />{" "}
@@ -44,8 +45,8 @@ export default function Item(props) {
           <div className="container-main-right-home-layout-math-ch-item">
             <input
               onChange={onChange}
-              id="1"
-              name={"da" + (stt + 1)}
+              id={stt}
+              name={"da" + (stt)}
               type="radio"
               value={value[2]}
             />{" "}
@@ -56,8 +57,8 @@ export default function Item(props) {
           <div className="container-main-right-home-layout-math-ch-item">
             <input
               onChange={onChange}
-              id="1"
-              name={"da" + (stt + 1)}
+              id={stt}
+              name={"da" + (stt)}
               type="radio"
               value={value[3]}
             />{" "}
@@ -92,9 +93,9 @@ export default function Item(props) {
       <div id={value.id} className="container-main-right-home-layout-math-sb">
         <div>
           <p>
-            Câu {stt + 1}: {value.data.name}.
+            Câu {props.ch + 1}: {value.data.name}.
           </p>
-          {showItem(data,stt)}
+          {showItem(data,props.ch)}
         </div>
       </div>
     </>

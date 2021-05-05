@@ -5,7 +5,8 @@ import firebase from './../config/fbConfig';
 export const LOGIN_USER=(e)=>{
     return (dispatch,getState,{getFirebase})=>{
         dispatch(LOGIN_REQUEST());
-        firebase.auth().signInWithEmailAndPassword(e.username+"@ued.udn.vn",e.password).then(res=>{
+        var emailUSer=(e.username+"@ued.udn.vn");
+        firebase.auth().signInWithEmailAndPassword(emailUSer,e.password).then(res=>{
             var user=firebase.auth().currentUser;
             if (user) {
                 dispatch(ID_USER(user.uid));
@@ -38,6 +39,7 @@ export const LOGIN_USER=(e)=>{
             }
              dispatch(USER_GET());
          }).catch(error=>{
+             console.log(error);
              dispatch(LOGIN_FAILURE())
          });
     }

@@ -9,6 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import * as action2 from "./../actions/redirect";
 import * as action3 from "./../actions/message";
+import * as action5 from "./../actions/question";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +17,8 @@ import { Redirect } from 'react-router-dom';
 
 function HomeLeft(props) {
   var id = props.match.params.id;
-  var { CategoryDetailStore, MessageStore, MessageQuestion, iDUserStore} = props;
+  var { CategoryDetailStore, MessageStore, MessageQuestion, iDUserStore,QuestionStore} = props;
+
   if (MessageStore.ERROR_CODE) {
     toast.error("Ma code khong chinh xac");
   }
@@ -26,6 +28,7 @@ function HomeLeft(props) {
   };
   useEffect(() => {
     props.GET_CATEGORY_DETAILS(id);
+    props.GET_QUESTION_LENGTH(id);
   }, [id]);
 
   if(MessageQuestion.get_question_success){
@@ -56,6 +59,7 @@ function HomeLeft(props) {
       <HomeLeftComponent
         checkCode={checkCode}
         CategoryDetailStore={CategoryDetailStore && CategoryDetailStore}
+        QuestionStore={QuestionStore&&QuestionStore}
       />
     </>
   );
@@ -67,7 +71,8 @@ const mapStateToProps = (state) => {
     KetquaStore: state.KetquaStore,
     CodeStore: state.CodeStore,
     MessageQuestion:state.MessageQuestion,
-    iDUserStore:state.iDUserStore
+    iDUserStore:state.iDUserStore,
+    QuestionStore:state.QuestionStore
   };
 };
 const dispatchToProps = (dispatch, props) => {
@@ -92,6 +97,9 @@ const dispatchToProps = (dispatch, props) => {
     },
     resetMessageGetQuestion:()=>{
       dispatch(action4.resetMessageGetQuestion());
+    },
+    GET_QUESTION_LENGTH:(id)=>{
+      dispatch(action5.GET_QUESTION_ALL(id));
     }
   };
 };

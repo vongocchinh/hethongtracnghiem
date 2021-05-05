@@ -18,7 +18,7 @@ export default function Login(props) {
     setPassword(e.target.value);
   }
   return (
-    <>
+    <div className="bg-login">
       <div className="container">
         <div className="container-login-layout">
           <div className="container-login-main">
@@ -26,12 +26,12 @@ export default function Login(props) {
             <form onSubmit={onSubmit}>
               <div>
                 <div className="container-login-main-input">
-                  <PersonIcon className="PersonIcon" /> <input onChange={onChange} name="names" placeholder="Mã sinh viên" type="text" />
+                  <PersonIcon className="PersonIcon" /> <input required minLength={10} onChange={onChange} name="names" placeholder="Mã sinh viên" type="text" />
                 </div>
               </div>
               <div>
                 <div className="container-login-main-input">
-                  <LockIcon className="PersonIcon" /> <input onChange={onChange2} name="passwords" placeholder="Mật khẩu" type="password" />
+                  <LockIcon className="PersonIcon" /> <input required minLength={6} onChange={onChange2} name="passwords" placeholder="Mật khẩu" type="password" />
                 </div>
               </div>
               <div>
@@ -39,12 +39,12 @@ export default function Login(props) {
               </div>
               <div>
                 <a href="###">Câu lạc bộ tin học</a>
-                <a href="####">Website liên hệ mr.chinh</a>
+                {/* <a href="####">Website liên hệ mr.chinh</a> */}
               </div>
             </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

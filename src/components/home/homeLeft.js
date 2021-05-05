@@ -9,7 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 export default function HomeLeft(props) {
   const [open, setOpen] = useState(false);
   const [code, setCode] = useState('');
-  var { CategoryDetailStore } = props;
+  var { CategoryDetailStore,QuestionStore } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,12 +19,16 @@ export default function HomeLeft(props) {
     setOpen(false);
     props.checkCode(code);
   };
+  const handleCloses = (e) => {
+    e.preventDefault();
+    setOpen(false);
+  };
   const onChange=(e)=>{
     setCode(e.target.value);
   }
   return (
     <>
-      {CategoryDetailStore.data ? (
+      {CategoryDetailStore.data && QuestionStore ? (
         <>
           <Dialog
             open={open}
@@ -37,22 +41,24 @@ export default function HomeLeft(props) {
                 Mã Code
               </DialogContentText>
               <form onSubmit={handleClose}>
-                <input  autoComplete="off" name="code" onChange={onChange} />
+                <input className="ipcode" autoComplete="off" name="code" onChange={onChange} />
               </form>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose} color="primary">
+              <Button variant="outlined" onClick={handleCloses} color="default">
                 Thoát
               </Button>
-              <Button onClick={handleClose} color="primary" autoFocus>
+              <Button variant="contained" onClick={handleClose} color="primary" autoFocus>
                 Bắt Đầu
               </Button>
             </DialogActions>
           </Dialog>
           <div className="container-main-right-layout">
             <p>{CategoryDetailStore.data.name}</p>
-            <p>Tổng số câu hỏi : {CategoryDetailStore.data.totalQuestion}</p>
+            <p>Tổng số câu hỏi : {QuestionStore.length}</p>
             <p>Thời gian lam bài :{CategoryDetailStore.data.time} phút</p>
+            <p>Người ra đề : CLB TIN HỌC</p>
+            <p>Ngày Biên soạn : {new Date(CategoryDetailStore.data.date.seconds*1000).toDateString()}</p>
             <div>
               <a to={"/thi/"+CategoryDetailStore.id}  onClick={handleClickOpen} href="###">
                 Bắt Đầu

@@ -4,6 +4,7 @@ import ItemComponent from "../components/ketquaQuestion/Item";
 import { connect } from "react-redux";
 import * as action from "./../actions/question";
 import * as action2 from "./../actions/ketqua";
+import * as action3 from "./../actions/login";
 import { Redirect } from "react-router-dom";
 function Ketqua(props) {
   var id = props.match.params.id;
@@ -23,16 +24,23 @@ function Ketqua(props) {
           <td>{QuestionStore.length}</td>
           <td>{data.itemR}</td>
           <td>{data.itemW}</td>
+          <td>{Math.round(((data.itemR/QuestionStore.length)*100) * 100) / 100} %</td>
           <td>{data.count}</td>
         </>
       );
     }
   };
+  
+  const onClickLogout=()=>{
+    var idUser = iDUserStore;
+    props.onClickLogout(idUser);
+  }
   return (
     <>
       <ItemComponent
         QuestionStore={QuestionStore}
         show={show(UsersKetquaStore, QuestionStore)}
+        onClickLogout={onClickLogout}
       />
     </>
   );
@@ -59,6 +67,9 @@ const dispatchToProps = (dispatch, props) => {
     GET_KET_QUA: (idUser) => {
       dispatch(action2.GET_KET_QUA_USER(idUser));
     },
+    onClickLogout:(idUser)=>{
+      dispatch(action3.LOGOUT_USER(idUser));
+    }
   };
 };
 

@@ -2,27 +2,11 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 // import {Link} from 'react-router-dom';
 import "./style.scss";
-
-import Countdown from "react-countdown";
+import SchoolIcon from '@material-ui/icons/School';
 export default function Thi(props) {
+  console.log(props.CategoryDetailStore);
   const onSubmit = (e) => {
     e.preventDefault();
-  };
-  const complete = () => <span>Hết thời gian làm bài !</span>;
-  const renderer = ({ hours, minutes, seconds, completed }) => {
-    if (completed) {
-      return <complete />;
-    } else {
-      return (
-        <span>
-          {hours}:{minutes}:{seconds}
-        </span>
-      );
-    }
-  };
-  const times = (ts) => {
-    var times = ts * 1000 * 60;
-    return Date.now() + times;
   };
   const onClickResult = () => {
     props.onClickResult();
@@ -31,8 +15,8 @@ export default function Thi(props) {
     if (data) {
       return (
         <>
-          <p>{data.fullname}</p>
-          <p>{data.IDSV}</p>
+          <p>Họ-Tên: {data.fullname}</p>
+          <p>MaSV: {data.IDSV}</p>
         </>
       );
     }
@@ -48,20 +32,15 @@ export default function Thi(props) {
               </div>
               <div className="time">
                 <p>
-                  {props.CategoryDetailStore.data ? (
-                    <Countdown
-                      date={times(props.CategoryDetailStore.data.time)}
-                      renderer={renderer}
-                    />
-                  ) : (
-                    <></>
-                  )}
+                  {props.times}
+                  :{props.timess} s
                 </p>
                 <button onClick={onClickResult} value="Nôp Bài" type="submit">
                   Nôp Bài
                 </button>
               </div>
               <div>
+                <p className="header-name-1">Mục Lục Câu Hỏi</p>
                 <Grid className="container-grid" item xs={12}>
                   <Grid
                     container
@@ -76,6 +55,7 @@ export default function Thi(props) {
             </div>
             <div className="container-main-right-home">
               <div className="container-main-right-home-layout">
+                <p className="header-name"><SchoolIcon />&nbsp;{props.CategoryDetailStore.data?props.CategoryDetailStore.data.name:""}</p>
                 <p className="p">
                   Đề thi (Lưu ý hoành thành bài thi trước giờ quy định)
                 </p>

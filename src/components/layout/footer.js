@@ -8,7 +8,7 @@ export default function footer() {
         <div
           className="text-center"
         >
-          <a className="text-dark" href="https://mdbootstrap.com/">
+          <a className="text-dark" href="###">
            CLB TIN HỌC
           </a>
         </div>

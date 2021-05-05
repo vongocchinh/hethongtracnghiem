@@ -4,6 +4,11 @@ export const GET_QUESTION_ALL = (id) => {
   return (dispatch, getState, { getFirebase }) => {
     dispatch(GET_QUESTION_ALL_LOADING());
     var data = [];
+    db.collection("question").get().then(res=>{
+      res.forEach(d=>{
+        // console.log(d.data().categoryId);
+      })
+    })
     db.collection("question")
       .where("categoryId", "==", id)
       .get()

@@ -18,9 +18,11 @@
             text-align: center;
             padding: 5px;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 17px;
             background-color: #ced6d6;
             color: black;
+            font-weight: 500;
+            color: #337AB7;
         }
     }
     .time{
@@ -36,7 +38,7 @@
         p{
             width: 100%;
             font-size: 25px;
-            color: #FF5722;
+            color: #337AB7;
             font-weight: 500;
             text-align: center;
             background-color: #FFF9E1;
@@ -47,7 +49,7 @@
             width: 80%;
             text-decoration:none;
             text-align: center;
-            background-color: #FF5722;
+            background-color: #337AB7;
             margin-bottom: 10px;
             color: white;
             padding: 10px;
@@ -62,6 +64,7 @@
         width: 100%;
         height: auto;
         clear: both;
+        margin-top: -17px;
         border: 1px solid rgb(216, 205, 205);
         // background-color: white;
         display: flex;
@@ -72,17 +75,21 @@
             margin-top: 10px;
             width: 98%;
             height: auto;
-            .container-grid-layout-main{
+            .material-list-number{
                 // background-color: white;
+                &:hover{
+                    background-color: #DBDBDB;
+                    // color: white;
+                }
             }
         }
         .material-list-number{
             width: 30px;
             height: 30px;
             background-color: #F0F0F0;
-            color: black;
+            color: #337AB7;
             text-align: center;
-            font-size: 13px;
+            font-size: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,6 +97,7 @@
             a{
                 text-decoration: none;
                 color: black;
+                font-weight: 550;
             }
         }
     }
@@ -165,4 +173,31 @@
         }
         margin-bottom: 20px;
     }
+}
+
+
+.header-name{
+    width: 96%;
+    height: auto;
+    padding: 2%;
+    align-items: center;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    background-color: #337AB7;
+    color: white;
+}
+.header-name-1{
+    width: 96%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto;
+    padding-left: 2%;
+    padding-right: 2%;
+    align-items: center;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    background-color: #ced6d6;
+    color: #337AB7;
 }

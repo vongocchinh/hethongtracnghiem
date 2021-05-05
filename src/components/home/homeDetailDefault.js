@@ -1,15 +1,16 @@
 import React from "react";
 // import { Link } from 'react-router-dom';
 import "./styles.scss";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 export default function HomDetailDefault(props) {
   var { UsersAccountStore } = props;
   const show = (data) => {
     if (data) {
       return (
         <>
-          <p>Xin chào : {data.fullname}</p>
-          <p>Mã Sinh Viên : {data.IDSV}</p>
-          <p>Chọn khóa học tương ứng để tham gia thi</p>
+          <p><CheckCircleIcon className="CheckCircleIcon"  color="primary" fontSize="small" /> Xin chào : {data.fullname}</p>
+          <p><CheckCircleIcon className="CheckCircleIcon" color="primary" fontSize="small" /> Mã Sinh Viên : {data.IDSV}</p>
+          <p><CheckCircleIcon className="CheckCircleIcon" color="primary" fontSize="small" /> Chọn khóa học tương ứng để tham gia thi</p>
         </>
       );
     }

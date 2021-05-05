@@ -19,7 +19,7 @@
                 font-weight: 600;
                 text-align: center;
                 font-size: 14px;
-                background-color: rgb(77, 62, 218);
+                background-color:#5383D3;
                 color: white;
                 padding:5px;
                 padding-top: 10px;
@@ -39,13 +39,16 @@
                     text-decoration: none;
                     margin-top: 5px;
                     margin-bottom: 10px;
-                    border:1px solid rgb(192, 189, 185);
+                    // border:1px solid rgb(192, 189, 185);
+                    background-color: #ced6d6;
+                    border-radius: 5px;
                     text-align: left;
                     margin-left: 5%;
                     font-size: 14px;
-                    font-weight: 500;
+                    font-weight:450;
                     color: black;
                     padding: 7px;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                     &:hover{
                         color: rgb(26, 54, 148);
                     }
@@ -63,20 +66,27 @@
             border-radius: 5px;
             // align-items: center;
             .container-main-right-layout{
-                width: 300px;
-                height: 150px;
+                width: 350px;
+                height: 200px;
                 margin-top: 80px;
+                background-color: #F5F5F5;
+                border-radius: 3px;
                 // height: auto;
                 // border:  1px solid black;
-                -webkit-box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
-                -moz-box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
-                box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
+                // -webkit-box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
+                // -moz-box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
+                // box-shadow: -1px 1px 19px -2px rgba(179,166,179,1);
                 // background-color: white;
+                // border: 1px solid #ced6d6;
                 padding: 10px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 p{
                     // background-color: white;
-                    font-weight: 500;
+                    font-weight: 480;
                     font-size: 14px;
+                    line-height: 10px;
+                    text-align: center;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 }
                 div{
                     margin-top: 20px;
@@ -87,8 +97,8 @@
                     justify-content: center;
                     a{
                         width: auto;
-                        padding: 5px;
-                        background-color: #065f99;
+                        padding: 7px;
+                        background-color: #069499;
                         color: white;
                         font-weight: 500;
                         font-size: 14px;
@@ -97,9 +107,32 @@
                         padding-left: 10px;
                         padding-right: 10px;
                         cursor: pointer;
+                        border-radius: 3px;
+                        margin-top: 10px;
                     }
                 }
             }
         }
     }
+}
+
+.CheckCircleIcon{
+    font-size: 12px;
+    position: absolute;
+    margin-left: -25px;
+    margin-top: -7px;
+}
+
+#alert-dialog-description{
+    color: #0c0f13;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+}
+.ipcode{
+    height: 30px;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid  #ced6d6;
 }
