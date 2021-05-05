@@ -5,6 +5,7 @@ var initialState = {
   get_question_error: false,
   get_question_success: false,
   get_question_success_error: false,
+  error_server:false
 };
 var myReducer = (state = initialState, actions) => {
   switch (actions.type) {
@@ -42,6 +43,15 @@ var myReducer = (state = initialState, actions) => {
         get_question_error: false,
         get_question_success: false,
         get_question_success_error: true,
+      };
+      return state;
+      case types.ERROR_SERVER:
+      state = {
+        get_question_loading: false,
+        get_question_error: false,
+        get_question_success: false,
+        get_question_success_error: false,
+        error_server:true
       };
       return state;
     default:

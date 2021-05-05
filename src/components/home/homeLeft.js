@@ -8,8 +8,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 // import { Link } from "react-router-dom";
 export default function HomeLeft(props) {
   const [open, setOpen] = useState(false);
-  const [code, setCode] = useState('');
-  var { CategoryDetailStore,QuestionStore } = props;
+  const [code, setCode] = useState("");
+  var { CategoryDetailStore, QuestionStore } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,52 +23,82 @@ export default function HomeLeft(props) {
     e.preventDefault();
     setOpen(false);
   };
-  const onChange=(e)=>{
+  const onChange = (e) => {
     setCode(e.target.value);
-  }
-  return (
-    <>
-      {CategoryDetailStore.data && QuestionStore ? (
-        <>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Mã Code
-              </DialogContentText>
-              <form onSubmit={handleClose}>
-                <input className="ipcode" autoComplete="off" name="code" onChange={onChange} />
-              </form>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="outlined" onClick={handleCloses} color="default">
-                Thoát
-              </Button>
-              <Button variant="contained" onClick={handleClose} color="primary" autoFocus>
-                Bắt Đầu
-              </Button>
-            </DialogActions>
-          </Dialog>
-          <div className="container-main-right-layout">
+  };
+  const show = (CategoryDetailStore) => {
+    var result = null;
+    if (CategoryDetailStore.data) {
+      if (CategoryDetailStore.data.rules) {
+        return (
+          <>
             <p>{CategoryDetailStore.data.name}</p>
             <p>Tổng số câu hỏi : {QuestionStore.length}</p>
             <p>Thời gian lam bài :{CategoryDetailStore.data.time} phút</p>
             <p>Người ra đề : CLB TIN HỌC</p>
-            <p>Ngày Biên soạn : {new Date(CategoryDetailStore.data.date.seconds*1000).toDateString()}</p>
+            <p>
+              Ngày Biên soạn :
+              {new Date(
+                CategoryDetailStore.data.date.seconds * 1000
+              ).toDateString()}
+            </p>
             <div>
-              <a to={"/thi/"+CategoryDetailStore.id}  onClick={handleClickOpen} href="###">
+              <a
+                to={"/thi/" + CategoryDetailStore.id}
+                onClick={handleClickOpen}
+                href="###"
+              >
                 Bắt Đầu
               </a>
             </div>
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
+          </>
+        );
+      }else{
+        <p>Lỗi server 404 .</p>
+      }
+    }
+    return result;
+  };
+  return (
+    <>
+      <>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Mã Code
+            </DialogContentText>
+            <form onSubmit={handleClose}>
+              <input
+                className="ipcode"
+                autoComplete="off"
+                name="code"
+                onChange={onChange}
+              />
+            </form>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={handleCloses} color="default">
+              Thoát
+            </Button>
+            <Button
+              variant="contained"
+              onClick={handleClose}
+              color="primary"
+              autoFocus
+            >
+              Bắt Đầu
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <div className="container-main-right-layout">
+          {show(CategoryDetailStore)}
+        </div>
+      </>
     </>
   );
 }

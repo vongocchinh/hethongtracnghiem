@@ -53,7 +53,7 @@ export default function Thi(props) {
                 </Grid>
               </div>
             </div>
-            <div className="container-main-right-home">
+            <div className="container-main-right-home-thi">
               <div className="container-main-right-home-layout">
                 <p className="header-name"><SchoolIcon />&nbsp;{props.CategoryDetailStore.data?props.CategoryDetailStore.data.name:""}</p>
                 <p className="p">

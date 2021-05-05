@@ -201,3 +201,14 @@
     background-color: #ced6d6;
     color: #337AB7;
 }
+.layout-img-question{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .img-question{
+        width: auto;
+        height: 200px;
+    }
+}

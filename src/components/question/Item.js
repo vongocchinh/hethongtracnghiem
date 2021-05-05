@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Item(props) {
-  var { value, stt } = props;
+  var { value } = props;
   const onChange = (e) => {
     var result = {
       id: value.id,
@@ -10,7 +10,7 @@ export default function Item(props) {
 
     props.onChange(result);
   };
-  const showItem = (value,stt) => {
+  const showItem = (value, stt) => {
     var result = null;
     console.log(stt);
     // value=fisherYates(value);
@@ -21,7 +21,7 @@ export default function Item(props) {
             <input
               onChange={onChange}
               id={stt}
-              name={"da" + (stt)}
+              name={"da" + stt}
               type="radio"
               value={value[0]}
             />{" "}
@@ -34,7 +34,7 @@ export default function Item(props) {
             <input
               onChange={onChange}
               id={stt}
-              name={"da" + (stt)}
+              name={"da" + stt}
               type="radio"
               value={value[1]}
             />{" "}
@@ -46,7 +46,7 @@ export default function Item(props) {
             <input
               onChange={onChange}
               id={stt}
-              name={"da" + (stt)}
+              name={"da" + stt}
               type="radio"
               value={value[2]}
             />{" "}
@@ -58,7 +58,7 @@ export default function Item(props) {
             <input
               onChange={onChange}
               id={stt}
-              name={"da" + (stt)}
+              name={"da" + stt}
               type="radio"
               value={value[3]}
             />{" "}
@@ -88,14 +88,41 @@ export default function Item(props) {
   data.push(value.data.c);
   data.push(value.data.d);
   data.push(value.data.b);
+
+  const showCH = (data) => {
+    var result = null;
+
+    if (data) {
+      if (data.data.rules) {
+        return <>{value.data.name}</>;
+      } else {
+        return (
+          <>
+            Cho câu hỏi như hình:
+            <br />
+            <div className="layout-img-question">
+              <img
+                alt={data.data.name}
+                src={
+                  data.data.name
+                }
+                className="img-question"
+              />
+            </div>
+          </>
+        );
+      }
+    }
+    return result;
+  };
   return (
     <>
       <div id={value.id} className="container-main-right-home-layout-math-sb">
         <div>
           <p>
-            Câu {props.ch + 1}: {value.data.name}.
+            Câu {props.ch + 1}:{showCH(props.value)}
           </p>
-          {showItem(data,props.ch)}
+          {showItem(data, props.ch)}
         </div>
       </div>
     </>

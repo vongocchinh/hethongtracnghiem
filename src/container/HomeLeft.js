@@ -37,6 +37,11 @@ function HomeLeft(props) {
   }
   if(MessageQuestion.get_question_error){
     props.resetMessageGetQuestion();
+    toast.dark("Lỗi code nhập không chính xác ");
+  }
+  if(MessageQuestion.error_server){
+    props.resetMessageGetQuestion();
+    toast.dark("Lỗi hệ thống !!!");
   }
   if(MessageQuestion.get_question_success_error){
     setTimeout(() => {

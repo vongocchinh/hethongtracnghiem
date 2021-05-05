@@ -20,6 +20,7 @@ function Question(props) {
   const [currentPageNew] = useState(10);
   const [times, setTimes] = useState(0)
   const [timess, setTimess] = useState(0)
+  const [idQ, setIDQ] = useState("")
   var id = props.match.params.id;
   var {
     CategoryDetailStore,
@@ -36,23 +37,20 @@ function Question(props) {
 
     var counter = setInterval(timer, 1000);
     var count1=60;
+   
     function timer() {
       count = count - 1;
+      count1 = count1 - 1;
       var temp=count;
       setTimes((Math.ceil(temp/60)));
+      
       if (count <= 0 && count1 === -1 ) {
         props.onClickResult({ id, idUSer: iDUserStore });
         clearInterval(counter);
         count=0;
         return;
       }
-    }
-
-    setInterval(timer1, 1000);
-    function timer1() {
-      count1 = count1 - 1;
-      var temp=count1;
-      setTimess(temp);
+      setTimess(count1);
       if (count1 < 1 && count >= 0) {
         count1=60;
       }else if(count1 <= 0  && count >= 0){
@@ -60,7 +58,6 @@ function Question(props) {
         return ;
       }
     }
-
     }
   }, [1]);
   const GET_ALL_DATA = () => {
