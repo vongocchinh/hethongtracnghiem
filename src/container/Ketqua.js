@@ -8,7 +8,7 @@ import * as action3 from "./../actions/login";
 import { Redirect } from "react-router-dom";
 function Ketqua(props) {
   var id = props.match.params.id;
-  var { QuestionStore, LayoutStore, UsersKetquaStore,iDUserStore } = props;
+  var { QuestionStore, LayoutStore, UsersKetquaStore,iDUserStore ,UsersAccountStore} = props;
   useEffect(() => {
     document.title="Kết quả phần thi của sinh viên ...";
     props.getDataQuestion(id);
@@ -42,6 +42,7 @@ function Ketqua(props) {
         QuestionStore={QuestionStore}
         show={show(UsersKetquaStore, QuestionStore)}
         onClickLogout={onClickLogout}
+        UsersAccountStore={UsersAccountStore&&UsersAccountStore}
       />
     </>
   );
@@ -53,7 +54,8 @@ const mapStateToProps = (state) => {
     QuestionStore: state.QuestionStore,
     LayoutStore: state.LayoutStore,
     UsersKetquaStore: state.UsersKetquaStore,
-    iDUserStore:state.iDUserStore
+    iDUserStore:state.iDUserStore,
+    UsersAccountStore:state.UsersAccountStore
   };
 };
 const dispatchToProps = (dispatch, props) => {

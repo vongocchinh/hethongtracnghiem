@@ -5,11 +5,12 @@ export default function Item(props) {
   const onClickLogout = () => {
     props.onClickLogout();
   };
+
   return (
     <>
       <div className="container">
         <div className="name-result-kq">Kết Quả Thi Của Sinh Viên</div>
-        <div className="name-result-kq-p">(Truyện - 3120218017)</div>
+        <div className="name-result-kq-p">({props.UsersAccountStore?props.UsersAccountStore.fullname:""}-{props.UsersAccountStore?props.UsersAccountStore.IDSV:""} )</div>
         <div className="container-result">
           <table>
             <thead>
