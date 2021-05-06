@@ -1,4 +1,4 @@
-import * as types from './../constanst/introduce';
+import * as types from './../constanst/result';
 import {db} from './../config/fbConfig';
 export const GET_INTRODUCE=()=>{
     return (dispatch,getState,{getFirebase})=>{

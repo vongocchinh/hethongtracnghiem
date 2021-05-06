@@ -1,4 +1,4 @@
-import * as types from "./../../constanst/introduce";
+import * as types from "./../../constanst/result";
 
 var initialState=[];
 var myReducer = (state = initialState, actions) => {
