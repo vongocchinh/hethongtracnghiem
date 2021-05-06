@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Itim&display=swap');
 .header-basic {
 	background-color: #5383d3;
 	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.15);
@@ -21,7 +23,10 @@
 
 .header-basic .header-limiter h1 {
 	float: left;
-	font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+	// font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 28px;
+	font-family: Cookie, Arial, Helvetica, sans-serif;
 	line-height: 40px;
 	margin: 0;
 }
@@ -52,7 +57,7 @@
 	opacity: 0.9;
 	cursor: pointer;
 	font-family: "Courier New", Courier, monospace;
-	letter-spacing: 0.1px;
+	letter-spacing: 0.005px;
 }
 
 .header-basic .header-limiter nav a:hover {
@@ -111,11 +116,12 @@ body {
 	.text-center {
 		// background-color: white;
 	}
+	
 	.text-dark {
-		// background-color: white;
 		text-decoration: none;
+		font-weight: normal;
 		font-size: 16px;
-		font: normal 18px Cookie, Arial, Helvetica, sans-serif;
+		font-family: Cookie, Arial, Helvetica, sans-serif;
 		color: white;
 	}
 }

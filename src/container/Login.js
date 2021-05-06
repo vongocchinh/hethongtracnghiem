@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import LoginComponent from "./../components/login/Login";
 import { connect } from "react-redux";
 import * as action from "./../actions/login";
@@ -8,7 +9,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Redirect } from "react-router-dom";
 import { toast } from 'react-toastify';
 function Login(props) {
-
+  useEffect(() => {
+    document.title="Đăng Nhập Vào Hệ Thống Thi ...";
+  }, [1])
   var { LoginStore, LayoutStore } = props;
   if (LayoutStore) {
     return <Redirect to="/" />;

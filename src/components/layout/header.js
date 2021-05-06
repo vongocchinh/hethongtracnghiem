@@ -11,7 +11,7 @@ export default function header(props) {
 <div>
         <header className="header-basic">
           <div className="header-limiter">
-            <h1><Link to="/">CLB<span>Tin-Hoc</span></Link></h1>
+            <h1><Link to="/">CLB<span>Tin-Học</span></Link></h1>
             <nav>
               <a href="###">User: {props.UsersAccountStore.fullname} |</a>
               <a href="###" onClick={onClickLogout} >Đăng Xuất&nbsp;<ExitToAppIcon className="ExitToAppIcon" /></a>

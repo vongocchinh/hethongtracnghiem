@@ -10,6 +10,7 @@ function Ketqua(props) {
   var id = props.match.params.id;
   var { QuestionStore, LayoutStore, UsersKetquaStore,iDUserStore } = props;
   useEffect(() => {
+    document.title="Kết quả phần thi của sinh viên ...";
     props.getDataQuestion(id);
     props.GET_KET_QUA(iDUserStore);
     props.GET_DATA_USER(iDUserStore);

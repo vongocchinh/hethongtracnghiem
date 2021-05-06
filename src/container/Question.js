@@ -32,6 +32,7 @@ function Question(props) {
 
   useEffect(() => {
     GET_ALL_DATA();
+    document.title="Phần thi trắc nghiệm ...";
     if(CategoryDetailStore.data){
       var count = (((CategoryDetailStore.data.time-1)*60));
 

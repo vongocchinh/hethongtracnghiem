@@ -14,8 +14,8 @@ import * as action5 from "./../actions/online"
 
 function Home(props) {
   var { CategoryStore, LayoutStore ,OnlineStore} = props;
-  console.log(OnlineStore);
   useEffect(() => {
+    document.title="Trang chủ hệ thống thi trắc nghiệm ...";
     props.GET_CATEGORY();
     props.GET_USER_ONLINE();
     if(LayoutStore){
