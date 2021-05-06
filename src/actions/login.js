@@ -1,5 +1,5 @@
 import * as types from "./../constanst/login";
-import * as types2 from "../constanst/user";
+// import * as types2 from "../constanst/user";
 import { db } from "../config/fbConfig";
 import firebase from "./../config/fbConfig";
 export const LOGIN_USER = (e) => {
@@ -55,7 +55,7 @@ export const LOGIN_USER = (e) => {
 
 export const ID_USER = (id) => {
   return {
-    type: types2.idUser,
+    type: types.idUser,
     id,
   };
 };

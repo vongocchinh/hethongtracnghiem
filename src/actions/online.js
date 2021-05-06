@@ -1,4 +1,4 @@
-import * as types from './../constanst/Online';
+import * as types from './../constanst/login';
 import { db } from './../config/fbConfig';
 export const GET_USER_ONLINE=()=>{
     return (dispatch, getState, { getFirebase }) => {

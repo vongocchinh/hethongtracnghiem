@@ -21,3 +21,10 @@ export const RESET_MESSAGE_USER='RESET_MESSAGE_USER';
 
 
 export const GET_RULES='GET_RULES';
+
+
+export const GET_USER_ONLINE='GET_USER_ONLINE';
+export const GET_USER_ONLINE_LOADING='GET_USER_ONLINE_LOADING';
+export const GET_USER_ONLINE_SUCCESS='GET_USER_ONLINE_SUCCESS';
+
+export const idUser='idUser';

@@ -1,6 +1,6 @@
 
 
-import * as types from './../../constanst/Online';
+import * as types from './../../constanst/login';
 
 
 var initialState=[];
