@@ -5,6 +5,7 @@ import HomeContainer from "./../container/Home";
 import Question from './../container/Question';
 // import HomeLeftComponent from './../container/HomeLeft';
 import ketquaContainer from './../container/Ketqua';
+import Introduce from "../container/Introduce";
 export default function router() {
   return (
     <>
@@ -14,6 +15,8 @@ export default function router() {
         <Route path="/login" component={LoginContainer} ></Route>
         <Route component={HomeContainer}  path="/category/:id" ></Route>
         <Route component={ketquaContainer} path="/ketqua/:id"></Route>
+        <Route component={Introduce} path="/introduce"></Route>
+        
       </Switch>
     </>
   );

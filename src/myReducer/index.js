@@ -16,6 +16,7 @@ import UsersKetquaStore from './ketqua/ketqua';
 import UsersAccountStore from './user';
 import iDUserStore from './user/idUser';
 import OnlineStore from './online/online';
+import IntroduceStore from './introducer/introduce';
 
 
 
@@ -37,6 +38,7 @@ var myReducer=combineReducers({
     UsersKetquaStore,
     UsersAccountStore,
     iDUserStore,
-    OnlineStore
+    OnlineStore,
+    IntroduceStore
 });
 export default myReducer;

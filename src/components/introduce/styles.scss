@@ -1,0 +1,69 @@
+
+.layout-lab-main-product{
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    .layout-lab-main-product-column{
+        width: 75%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        .paper-introduce-lab{
+            width: 250px;
+            height: auto;
+            border: 1px solid rgb(218, 210, 210);
+            border-radius: 5px;
+            padding: 10px;
+            transition: ease-in-out all 0.2s;
+            margin-top: 10px;
+            // margin-bottom: 15px;
+            p{
+                text-align: center;
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .img-introduce-layout{
+                margin-top: 20px;
+                width: 100%;
+                height: 130px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    width: 130px;
+                    height: 130px;
+                    border-radius: 50%;
+                }
+            }
+            .introduce-detail{
+                width: 100%;
+                height: auto;
+                line-height: 5px;
+                margin-bottom: 10px;
+                a{
+                    color: #5383D3;
+                }
+                p:nth-child(1){
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    color: #5383D3
+                }
+                p {
+                    font-weight: 400;
+                    font-size: 13px;
+                    color:#818181;
+                    line-height: 15px;
+                }
+            }
+        }
+    }
+}

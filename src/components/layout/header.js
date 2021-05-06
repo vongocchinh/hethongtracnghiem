@@ -13,7 +13,8 @@ export default function header(props) {
           <div className="header-limiter">
             <h1><Link to="/">CLB<span>Tin-Học</span></Link></h1>
             <nav>
-              <a href="###">User: {props.UsersAccountStore.fullname} |</a>
+            <Link className="about" to="/introduce">Giới Thiệu</Link>
+              <a href="###">{props.UsersAccountStore.fullname} |</a>
               <a href="###" onClick={onClickLogout} >Đăng Xuất&nbsp;<ExitToAppIcon className="ExitToAppIcon" /></a>
             </nav>
           </div>
