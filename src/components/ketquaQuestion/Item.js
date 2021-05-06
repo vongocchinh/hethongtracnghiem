@@ -5,7 +5,6 @@ export default function Item(props) {
   const onClickLogout = () => {
     props.onClickLogout();
   };
-
   return (
     <>
       <div className="container">

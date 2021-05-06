@@ -123,12 +123,7 @@ export const LOGOUT_USER = (idUser) => {
             .then((res) => {})
             .catch((er) => {});
         });
-      })
-      .catch(function (error) {
-        console.log("Error getting documents: ", error);
-      });
-
-    firebase
+        firebase
       .auth()
       .signOut()
       .then(() => {
@@ -144,6 +139,12 @@ export const LOGOUT_USER = (idUser) => {
       .catch(() => {
         dispatch(LOGOUT_ERROR());
       });
+      })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+
+    
   };
 };
 
