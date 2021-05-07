@@ -33,6 +33,7 @@ export const GET_CODE = ({ e, idCategory, iDUser }) => {
                           itemW: doc.data().itemW,
                           count: doc.data().count,
                           online: doc.data().online,
+                          categoryId:doc.data().categoryId
                         })
                         .then((res) => {
                           dispatch(GET_QUESTION_SUCCESS());

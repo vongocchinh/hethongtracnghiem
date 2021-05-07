@@ -32,6 +32,7 @@ export const LOGIN_USER = (e) => {
                     itemW: doc.data().itemW,
                     count: doc.data().count,
                     online: true,
+                    categoryId:doc.data().categoryId
                   })
                   .then((res) => {})
                   .catch((er) => {});
@@ -119,6 +120,7 @@ export const LOGOUT_USER = (idUser) => {
               itemW: doc.data().itemW,
               count: doc.data().count,
               online: false,
+              categoryId:doc.data().categoryId
             })
             .then((res) => {})
             .catch((er) => {});
