@@ -14,6 +14,7 @@ function Header(props) {
   if (!LayoutStore) {
     return <Redirect to="/login" />;
   }
+  
   const onClickLogout = () => {
     var idUser = iDUserStore;
     props.onClickLogout(idUser);
@@ -33,6 +34,7 @@ const mapStateToProps = (state) => {
     LayoutStore: state.LayoutStore,
     UsersAccountStore: state.UsersAccountStore,
     iDUserStore: state.iDUserStore,
+    LogouttStore:state.LogouttStore
   };
 };
 const dispatchToProps = (dispatch, props) => {

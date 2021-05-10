@@ -21,9 +21,7 @@ function Login(props) {
     return <Redirect to="/" />;
   }
   if (LoginStore.login_error) {
-    setTimeout(() => {
-      toast.dark("Tài khoản của bạn chưa được cung cấp. Đăng nhập lại !!!")
-    }, 200);
+    toast.dark("Tài khoản của bạn chưa được cung cấp. Đăng nhập lại !!!")
   }
   const login = (e) => {
     props.LOGIN_USER(e);

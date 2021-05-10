@@ -32,7 +32,8 @@ export const LOGIN_USER = (e) => {
                     itemW: doc.data().itemW,
                     count: doc.data().count,
                     online: true,
-                    categoryId:doc.data().categoryId
+                    categoryId: doc.data().categoryId,
+                    quyen:doc.data().quyen
                   })
                   .then((res) => {})
                   .catch((er) => {});
@@ -120,33 +121,33 @@ export const LOGOUT_USER = (idUser) => {
               itemW: doc.data().itemW,
               count: doc.data().count,
               online: false,
-              categoryId:doc.data().categoryId
+              categoryId: doc.data().categoryId,
+              quyen:doc.data().quyen
             })
-            .then((res) => {})
+            .then((res) => {
+              firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                  var user = firebase.auth.currentUser;
+                  localStorage.removeItem("apiuid");
+                  if (!user) {
+                    dispatch(LOGOUT_SUCCESS());
+                  }
+                  localStorage.removeItem("apiuid");
+                  localStorage.clear();
+                  dispatch(USER_GET());
+                })
+                .catch(() => {
+                  dispatch(LOGOUT_ERROR());
+                });
+            })
             .catch((er) => {});
         });
-        firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        var user = firebase.auth.currentUser;
-        localStorage.removeItem("apiuid");
-        if (!user) {
-          dispatch(LOGOUT_SUCCESS());
-        }
-        localStorage.removeItem("apiuid");
-        localStorage.clear();
-        dispatch(USER_GET());
-      })
-      .catch(() => {
-        dispatch(LOGOUT_ERROR());
-      });
       })
       .catch(function (error) {
         console.log("Error getting documents: ", error);
       });
-
-    
   };
 };
 

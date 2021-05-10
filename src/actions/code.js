@@ -21,26 +21,31 @@ export const GET_CODE = ({ e, idCategory, iDUser }) => {
                   querySnapshot.forEach(function (doc) {
                     var idU = doc.id;
                     var idCategoryUser = doc.data().rules;
-                    if (idCategoryUser !== idCategory) {
-                      db.collection("user")
-                        .doc(idU)
-                        .set({
-                          IDSV: doc.data().IDSV,
-                          fullname: doc.data().fullname,
-                          rules: idCategory,
-                          uidAuthentication: doc.data().uidAuthentication,
-                          itemR: doc.data().itemR,
-                          itemW: doc.data().itemW,
-                          count: doc.data().count,
-                          online: doc.data().online,
-                          categoryId:doc.data().categoryId
-                        })
-                        .then((res) => {
-                          dispatch(GET_QUESTION_SUCCESS());
-                        })
-                        .catch((er) => {});
-                    } else {
-                      dispatch(GET_QUESTION_SUCCESS_ERROR());
+                    if(doc.data().quyen===2){
+                      dispatch(GET_QUESTION_ERROR_RULES());
+                    }else{
+                      if (idCategoryUser !== idCategory) {
+                        db.collection("user")
+                          .doc(idU)
+                          .set({
+                            IDSV: doc.data().IDSV,
+                            fullname: doc.data().fullname,
+                            rules: idCategory,
+                            uidAuthentication: doc.data().uidAuthentication,
+                            itemR: doc.data().itemR,
+                            itemW: doc.data().itemW,
+                            count: doc.data().count,
+                            online: doc.data().online,
+                            categoryId:doc.data().categoryId,
+                            quyen:doc.data().quyen
+                          })
+                          .then((res) => {
+                            dispatch(GET_QUESTION_SUCCESS());
+                          })
+                          .catch((er) => {});
+                      } else {
+                        dispatch(GET_QUESTION_SUCCESS_ERROR());
+                      }
                     }
                   });
                 })
@@ -74,6 +79,13 @@ export const getCodeSuccess = (data) => {
     },
   };
 };
+
+export const GET_QUESTION_ERROR_RULES=()=>{
+  return {
+    type:types.GET_QUESTION_ERROR_RULES
+  }
+}
+
 
 export const GET_QUESTION_ERROR_SERVER=()=>{
   return {

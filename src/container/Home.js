@@ -11,7 +11,7 @@ import { Redirect } from "react-router-dom";
 // import { useEffect } from 'react';
 import OnlineComponent from './../components/home/online/online';
 import * as action5 from "./../actions/online"
-
+import { Dialog ,DialogActions ,CircularProgress} from '@material-ui/core';
 function Home(props) {
   var { CategoryStore, LayoutStore ,OnlineStore} = props;
   useEffect(() => {
@@ -51,6 +51,15 @@ function Home(props) {
   }
   return (
     <>
+     <Dialog
+        open={props.LogouttStore.logout_loading}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogActions>
+          <CircularProgress />
+        </DialogActions>
+      </Dialog>
       <HomeComponent showCategory={showCategory(CategoryStore)} showOnline={showOnline(OnlineStore&&OnlineStore)} />
     </>
   );
@@ -63,7 +72,8 @@ const mapStateToProps = (state) => {
     LayoutStore: state.LayoutStore,
     UsersStore:state.UsersStore,
     LoginStore:state.LoginStore,
-    OnlineStore:state.OnlineStore
+    OnlineStore:state.OnlineStore,
+    LogouttStore:state.LogouttStore
   };
 };
 

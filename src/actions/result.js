@@ -59,7 +59,8 @@ export const onClickResult = ({ id, idUSer }) => {
                     itemR,
                     itemW,
                     online: doc.data().online,
-                    categoryId:doc.data().categoryId
+                    categoryId:doc.data().categoryId,
+                    quyen:doc.data().quyen
                   })
                   .then((res) => {
                     var datas = {
@@ -71,7 +72,8 @@ export const onClickResult = ({ id, idUSer }) => {
                       itemR,
                       itemW,
                       online: doc.data().online,
-                      categoryId:doc.data().categoryId
+                      categoryId:doc.data().categoryId,
+                      quyen:doc.data().quyen
                     };
                     dispatch(GET_SUUCESS(datas));
 

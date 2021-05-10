@@ -6,6 +6,8 @@ import * as action from "./../actions/question";
 import * as action2 from "./../actions/ketqua";
 import * as action3 from "./../actions/login";
 import { Redirect } from "react-router-dom";
+import { Dialog ,DialogActions ,CircularProgress} from '@material-ui/core';
+
 function Ketqua(props) {
   var id = props.match.params.id;
   var { QuestionStore, LayoutStore, UsersKetquaStore,iDUserStore ,UsersAccountStore} = props;
@@ -36,8 +38,18 @@ function Ketqua(props) {
     var idUser = iDUserStore;
     props.onClickLogout(idUser);
   }
+
   return (
     <>
+     <Dialog
+        open={props.LogouttStore.logout_loading}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogActions>
+          <CircularProgress />
+        </DialogActions>
+      </Dialog>
       <ItemComponent
         QuestionStore={QuestionStore}
         show={show(UsersKetquaStore, QuestionStore)}
@@ -55,7 +67,8 @@ const mapStateToProps = (state) => {
     LayoutStore: state.LayoutStore,
     UsersKetquaStore: state.UsersKetquaStore,
     iDUserStore:state.iDUserStore,
-    UsersAccountStore:state.UsersAccountStore
+    UsersAccountStore:state.UsersAccountStore,
+    LogouttStore:state.LogouttStore
   };
 };
 const dispatchToProps = (dispatch, props) => {

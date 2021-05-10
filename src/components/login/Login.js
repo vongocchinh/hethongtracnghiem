@@ -26,12 +26,12 @@ export default function Login(props) {
             <form onSubmit={onSubmit}>
               <div>
                 <div className="container-login-main-input">
-                  <PersonIcon className="PersonIcon" /> <input required minLength={10} onChange={onChange} name="names" placeholder="Mã sinh viên" type="text" />
+                  <PersonIcon className="PersonIcon" /> <input autoComplete="off" required minLength={10} onChange={onChange} name="names" placeholder="Mã sinh viên" type="text" />
                 </div>
               </div>
               <div>
                 <div className="container-login-main-input">
-                  <LockIcon className="PersonIcon" /> <input required minLength={6} onChange={onChange2} name="passwords" placeholder="Mật khẩu" type="password" />
+                  <LockIcon className="PersonIcon" /> <input required minLength={6} autoComplete="off" onChange={onChange2} name="passwords" placeholder="Mật khẩu" type="password" />
                 </div>
               </div>
               <div>
@@ -40,6 +40,7 @@ export default function Login(props) {
               <div>
                 <a href="###">Câu lạc bộ tin học</a>
                 {/* <a href="####">Website liên hệ mr.chinh</a> */}
+                <a href="###">Bạn Có Thể Đăng Nhập Với Tài Khoản Sau: MSV:sinhvienclb - Mật Khẩu:sinhvienclb </a>
               </div>
             </form>
           </div>

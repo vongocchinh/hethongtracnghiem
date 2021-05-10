@@ -5,6 +5,7 @@ import Footer from "./container/Footer";
 // import Login from "./container/Login";
 import { ToastContainer } from "react-toastify";
 
+
 import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 function App(props) {
@@ -34,6 +35,7 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     LayoutStore: state.LayoutStore,
+    LogouttStore:state.LogouttStore
   };
 };
 

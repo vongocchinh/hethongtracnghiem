@@ -4,26 +4,42 @@ import HomeLeftComponent from "./../components/home/homeLeft";
 import { connect } from "react-redux";
 import * as action from "./../actions/category";
 import * as action4 from "./../actions/code";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import * as action2 from "./../actions/redirect";
 import * as action3 from "./../actions/message";
 import * as action5 from "./../actions/question";
 import { toast } from "react-toastify";
 
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
+
 import "react-toastify/dist/ReactToastify.css";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function HomeLeft(props) {
   var id = props.match.params.id;
-  var { CategoryDetailStore, MessageStore, MessageQuestion, iDUserStore,QuestionStore} = props;
+
+  var {
+    CategoryDetailStore,
+    MessageStore,
+    MessageQuestion,
+    iDUserStore,
+    QuestionStore,
+  } = props;
 
   if (MessageStore.ERROR_CODE) {
     toast.error("Ma code khong chinh xac");
   }
   const checkCode = (e) => {
-    var data = { e, idCategory:id ,iDUser:iDUserStore};
+    var data = { e, idCategory: id, iDUser: iDUserStore };
     props.getCode(data);
   };
   useEffect(() => {
@@ -31,28 +47,53 @@ function HomeLeft(props) {
     props.GET_QUESTION_LENGTH(id);
   }, [id]);
 
-  if(MessageQuestion.get_question_success){
+  if (MessageQuestion.get_question_success) {
     props.resetMessageGetQuestion();
-    return <Redirect  to={"/thi/"+id} />
+    return <Redirect to={"/thi/" + id} />;
   }
-  if(MessageQuestion.get_question_error){
+  if (MessageQuestion.get_question_error) {
     props.resetMessageGetQuestion();
     toast.dark("Lỗi code nhập không chính xác ");
   }
-  if(MessageQuestion.error_server){
+  if (MessageQuestion.error_server) {
     props.resetMessageGetQuestion();
     toast.dark("Lỗi hệ thống !!!");
   }
-  if(MessageQuestion.get_question_success_error){
+
+  console.log(MessageQuestion.get_question_error_rules);
+  if (MessageQuestion.get_question_error_rules) {
+    toast.success("Bạn không có quyền truy cập !!!");
+    props.resetMessageGetQuestion();
+  }
+  if (MessageQuestion.get_question_success_error) {
     setTimeout(() => {
       props.resetMessageGetQuestion();
     }, 2000);
     props.resetMessageGetQuestion();
-    return <Redirect to={"/ketqua/"+id} />
+    return <Redirect to={"/ketqua/" + id} />;
   }
+
   return (
     <>
-    <Dialog
+      <Dialog
+          open={MessageQuestion.get_question_error_rules}
+          TransitionComponent={Transition}
+          keepMounted
+          // onClose={handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {"Use Google's location service?"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Let Google help apps determine location. This means sending
+              anonymous location data to Google, even when no apps are running.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+      <Dialog
         open={MessageQuestion.get_question_loading}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -64,7 +105,7 @@ function HomeLeft(props) {
       <HomeLeftComponent
         checkCode={checkCode}
         CategoryDetailStore={CategoryDetailStore && CategoryDetailStore}
-        QuestionStore={QuestionStore&&QuestionStore}
+        QuestionStore={QuestionStore && QuestionStore}
       />
     </>
   );
@@ -75,9 +116,9 @@ const mapStateToProps = (state) => {
     MessageStore: state.MessageStore,
     KetquaStore: state.KetquaStore,
     CodeStore: state.CodeStore,
-    MessageQuestion:state.MessageQuestion,
-    iDUserStore:state.iDUserStore,
-    QuestionStore:state.QuestionStore
+    MessageQuestion: state.MessageQuestion,
+    iDUserStore: state.iDUserStore,
+    QuestionStore: state.QuestionStore,
   };
 };
 const dispatchToProps = (dispatch, props) => {
@@ -100,12 +141,12 @@ const dispatchToProps = (dispatch, props) => {
     getCode: (e) => {
       dispatch(action4.GET_CODE(e));
     },
-    resetMessageGetQuestion:()=>{
+    resetMessageGetQuestion: () => {
       dispatch(action4.resetMessageGetQuestion());
     },
-    GET_QUESTION_LENGTH:(id)=>{
+    GET_QUESTION_LENGTH: (id) => {
       dispatch(action5.GET_QUESTION_ALL(id));
-    }
+    },
   };
 };
 export default connect(mapStateToProps, dispatchToProps)(HomeLeft);

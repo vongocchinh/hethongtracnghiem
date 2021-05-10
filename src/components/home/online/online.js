@@ -3,7 +3,8 @@ import React from "react";
 export default function online(props) {
   return (
     <>
-      <p> {props.value.fullname} ({props.value.IDSV})</p>
+      <p>	&#9679; {props.value.fullname} </p>
+      {/* <p>({props.value.IDSV})</p> */}
     </>
   );
 }
