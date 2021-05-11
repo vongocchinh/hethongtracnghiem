@@ -138,3 +138,17 @@ body {
 	position: absolute;
 	margin-top: 8px;
 }
+
+$res_600: "only screen and (max-width: 600px)";
+
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+@include responsive_600() {
+	.ExitToAppIcon{
+		position: absolute;
+		margin-top: -5px;
+	}
+}

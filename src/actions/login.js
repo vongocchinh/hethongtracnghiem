@@ -12,7 +12,7 @@ export const LOGIN_USER = (e) => {
       .then((res) => {
         var user = firebase.auth().currentUser;
         if (user) {
-          dispatch(ID_USER(user.uid));
+          
           db.collection("user")
             .where("uidAuthentication", "==", user.uid)
             .get()
@@ -35,10 +35,12 @@ export const LOGIN_USER = (e) => {
                     categoryId: doc.data().categoryId,
                     quyen:doc.data().quyen
                   })
-                  .then((res) => {})
+                  .then((res) => {
+                    dispatch(ID_USER(user.uid));
+                    localStorage.setItem("apiuid", JSON.stringify(userArray));
+                    dispatch(LOGIN_SUCCESS(userArray));
+                  })
                   .catch((er) => {});
-                localStorage.setItem("apiuid", JSON.stringify(userArray));
-                dispatch(LOGIN_SUCCESS(userArray));
               });
             })
             .catch(function (error) {
@@ -46,7 +48,7 @@ export const LOGIN_USER = (e) => {
             });
         } else {
         }
-        dispatch(USER_GET());
+        // dispatch(USER_GET());
       })
       .catch((error) => {
         dispatch(LOGIN_FAILURE());

@@ -20,6 +20,7 @@ function Login(props) {
     props.RESET();
     return <Redirect to="/" />;
   }
+  console.log(LoginStore);
   if (LoginStore.login_error) {
     toast.dark("Tài khoản của bạn chưa được cung cấp. Đăng nhập lại !!!")
   }

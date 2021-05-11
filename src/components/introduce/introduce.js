@@ -12,7 +12,7 @@ export default function introducer(props) {
             <Grid
               className="layout-lab-main-product-column"
               container
-              spacing={10}
+              spacing={2}
             >
                 {props.show}
             </Grid>

@@ -9,19 +9,19 @@ import * as action3 from "./../actions/code";
 import CategoryItem from "./../components/home/category/category";
 import { Redirect } from "react-router-dom";
 // import { useEffect } from 'react';
-import OnlineComponent from './../components/home/online/online';
-import * as action5 from "./../actions/online"
-import { Dialog ,DialogActions ,CircularProgress} from '@material-ui/core';
+import OnlineComponent from "./../components/home/online/online";
+import * as action5 from "./../actions/online";
+import { Dialog, DialogActions, CircularProgress } from "@material-ui/core";
 function Home(props) {
-  var { CategoryStore, LayoutStore ,OnlineStore} = props;
+  var { CategoryStore, LayoutStore, OnlineStore } = props;
   useEffect(() => {
-    document.title="Trang chủ hệ thống thi trắc nghiệm ...";
+    document.title = "Trang chủ hệ thống thi trắc nghiệm ...";
     props.GET_CATEGORY();
     props.GET_USER_ONLINE();
-    if(LayoutStore){
+    if (LayoutStore) {
       props.getRulesUser(LayoutStore.idUser);
     }
-  },[1]);
+  }, [1]);
   if (!LayoutStore) {
     return <Redirect to="/login" />;
   }
@@ -31,8 +31,8 @@ function Home(props) {
       result =
         data &&
         data.map((value, index) => {
-          if(value.data.rules){
-            return <CategoryItem key={index} value={value} />
+          if (value.data.rules) {
+            return <CategoryItem key={index} value={value} />;
           }
         });
     }
@@ -40,18 +40,20 @@ function Home(props) {
     return result;
   };
 
-  const showOnline=(data)=>{
-    var result=null;
-    if(data){
-      result=(data&&data.map((value,key)=>{
-        return <OnlineComponent value={value} key={key}  />
-      }))
+  const showOnline = (data) => {
+    var result = null;
+    if (data) {
+      result =
+        data &&
+        data.map((value, key) => {
+          return <OnlineComponent value={value} key={key} />;
+        });
     }
     return result;
-  }
+  };
   return (
     <>
-     <Dialog
+      <Dialog
         open={props.LogouttStore.logout_loading}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -60,7 +62,10 @@ function Home(props) {
           <CircularProgress />
         </DialogActions>
       </Dialog>
-      <HomeComponent showCategory={showCategory(CategoryStore)} showOnline={showOnline(OnlineStore&&OnlineStore)} />
+      <HomeComponent
+        showCategory={showCategory(CategoryStore)}
+        showOnline={showOnline(OnlineStore && OnlineStore)}
+      />
     </>
   );
 }
@@ -70,10 +75,10 @@ const mapStateToProps = (state) => {
     CategoryStore: state.CategoryStore,
     RedirectStore: state.RedirectStore,
     LayoutStore: state.LayoutStore,
-    UsersStore:state.UsersStore,
-    LoginStore:state.LoginStore,
-    OnlineStore:state.OnlineStore,
-    LogouttStore:state.LogouttStore
+    UsersStore: state.UsersStore,
+    LoginStore: state.LoginStore,
+    OnlineStore: state.OnlineStore,
+    LogouttStore: state.LogouttStore,
   };
 };
 
@@ -85,12 +90,12 @@ const dispatchToProps = (dispatch, props) => {
     setRedirectReset: () => {
       dispatch(actionQ2.setRedirectThiReset());
     },
-    getRulesUser:(id)=>{
+    getRulesUser: (id) => {
       dispatch(action3.GET_USER_RULES(id));
     },
-    GET_USER_ONLINE:()=>{
+    GET_USER_ONLINE: () => {
       dispatch(action5.GET_USER_ONLINE());
-  }
+    },
   };
 };
 export default connect(mapStateToProps, dispatchToProps)(Home);
