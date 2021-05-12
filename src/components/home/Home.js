@@ -17,7 +17,7 @@ export default function Home(props) {
               <RouterCategory />
             </div>
             <div className="container-main-right-home-user">
-              <p className="header-online-user">user online</p>
+              <p className="header-online-user">User Online</p>
               <div className="layout-container-main-user-online">
                 {props.showOnline}
               </div>

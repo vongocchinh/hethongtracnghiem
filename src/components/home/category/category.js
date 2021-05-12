@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Category(props) {
   var {value}=props;
   return (
     <>
       <div className="container-left-menu-list">
-        <Link to={"/category/"+value.id} className="menu-list" href="###">
+        <NavLink exact={true} to={"/category/"+value.id} className="menu-list" href="###">
             {value.data.name}
-        </Link>
+        </NavLink>
       </div>
     </>
   );

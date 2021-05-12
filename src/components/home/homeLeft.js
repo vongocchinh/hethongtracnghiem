@@ -32,7 +32,7 @@ export default function HomeLeft(props) {
       if (CategoryDetailStore.data.rules) {
         return (
           <>
-            <p>{CategoryDetailStore.data.name}</p>
+            <p className="name-category-home-left">{CategoryDetailStore.data.name}</p>
             <p>Tổng số câu hỏi : {QuestionStore.length}</p>
             <p>Thời gian lam bài :{CategoryDetailStore.data.time} phút</p>
             <p>Người ra đề : CLB TIN HỌC</p>

@@ -20,7 +20,6 @@ export default function item(props) {
           <p>Phone : {value.phone} </p>
           <p>
             Đứng lớp : {value.des}
-            bản
           </p>
         </div>
       </div>
