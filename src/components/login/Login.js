@@ -20,7 +20,7 @@ export default function Login(props) {
   };
   return (
     <div className="bg-login">
-      <div className="container">
+      <div className="container-login">
         <div className="container-login-layout">
           <div className="container-login-main">
             <div className="container-login-main-left">

@@ -18,7 +18,8 @@
         margin-bottom: 20px;
         cursor: pointer;
         .paper-introduce-lab{
-            width: 250px;
+            min-width: 270px;
+            max-width: 270px;
             height: auto;
             border: 1px solid rgb(218, 210, 210);
             border-radius: 5px;
@@ -31,6 +32,7 @@
                 text-align: center;
                 font-weight: 600;
                 font-size: 15px;
+                margin-top: 7px;
             }
             .img-introduce-layout{
                 margin-top: 20px;
@@ -56,7 +58,8 @@
                 p:nth-child(1){
                     font-weight: 600;
                     text-transform: uppercase;
-                    color: #5383D3
+                    color: #5383D3;
+                    margin-top: 15px;
                 }
                 p {
                     font-weight: 400;

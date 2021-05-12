@@ -23,6 +23,9 @@
             color: black;
             font-weight: 500;
             color: #337AB7;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
         }
     }
     .time{
@@ -58,13 +61,14 @@
             outline: none;
             border: none;
             cursor: pointer;
+            margin-top: 20px;
         }
     }
     .container-grid{
         width: 100%;
         height: auto;
         clear: both;
-        margin-top: -17px;
+        // margin-top: -17px;
         border: 1px solid rgb(216, 205, 205);
         // background-color: white;
         display: flex;
@@ -132,6 +136,8 @@
             background-color: #F5F5F5;
             padding-left: 10px;
             padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             cursor: pointer;
             p{
@@ -188,7 +194,7 @@
     color: white;
 }
 .header-name-1{
-    width: 96%;
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
     height: auto;

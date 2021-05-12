@@ -120,7 +120,7 @@ export default function Item(props) {
       <div id={value.id} className="container-main-right-home-layout-math-sb">
         <div>
           <p>
-            Câu {props.ch + 1}:{showCH(props.value)}
+            Câu {props.stt + 1}:{showCH(props.value)}
           </p>
           {showItem(data, props.ch)}
         </div>
