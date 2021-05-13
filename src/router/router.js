@@ -6,6 +6,7 @@ import Question from './../container/Question';
 // import HomeLeftComponent from './../container/HomeLeft';
 import ketquaContainer from './../container/Ketqua';
 import Introduce from "../container/Introduce";
+import Course from './../container/Course';
 export default function router() {
   return (
     <>
@@ -16,6 +17,7 @@ export default function router() {
         <Route component={HomeContainer}  path="/category/:id" ></Route>
         <Route component={ketquaContainer} path="/ketqua/:id"></Route>
         <Route component={Introduce} path="/introduce"></Route>
+        <Route component={Course} path="/caulacbo/khoahoc/hoc"></Route>
         
       </Switch>
     </>

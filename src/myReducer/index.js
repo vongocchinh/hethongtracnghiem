@@ -17,6 +17,8 @@ import UsersAccountStore from './user';
 import iDUserStore from './user/idUser';
 import OnlineStore from './online/online';
 import IntroduceStore from './introducer/introduce';
+import CourseStore from './course/course';
+import CourseMessageStore from './course/message';
 
 
 
@@ -39,6 +41,8 @@ var myReducer=combineReducers({
     UsersAccountStore,
     iDUserStore,
     OnlineStore,
-    IntroduceStore
+    IntroduceStore,
+    CourseStore,
+    CourseMessageStore
 });
 export default myReducer;
