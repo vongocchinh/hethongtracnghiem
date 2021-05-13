@@ -97,7 +97,7 @@
 
 /* Making the header responsive */
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 640px) {
 	.header-basic {
 		padding: 20px 0;
 		height: 85px;
@@ -149,7 +149,7 @@
 	background-color: #5383d3;
 }
 
-$res_600: "only screen and (max-width: 600px)";
+$res_600: "only screen and (max-width: 640px)";
 
 @mixin responsive_600() {
     @media #{$res_600} {

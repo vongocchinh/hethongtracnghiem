@@ -17,8 +17,11 @@ export default function header(props) {
               </Link>
             </h1>
             <nav>
-              <NavLink exact={true} activeClassName='is-active' to="/caulacbo/khoahoc/hoc">
+            <NavLink exact={true} activeClassName='is-active' to="/">
                 Trang Chủ
+              </NavLink >
+              <NavLink  activeClassName='is-active' to="/caulacbo/khoahoc/hoc">
+                Khóa Học
               </NavLink >
               <NavLink  activeClassName='is-active' to="/introduce">
                 Giới Thiệu
