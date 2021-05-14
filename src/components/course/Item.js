@@ -9,7 +9,7 @@ export default function item(props) {
   var { value } = props;
   return (
     <>
-      <Grid key={value} item>
+      <Grid className="item-course-layout-course" key={value} item>
         <Paper className="item-course-layout">
           <p className="name-header-course-1">
             {value.data.name}
