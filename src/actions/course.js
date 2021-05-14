@@ -30,3 +30,11 @@ export const GET_COURSE_LOADING = () => {
     type: course.GET_COURSE_LOADING,
   };
 };
+
+
+
+export const GET_COURSE_ERROR=()=>{
+  return {
+    type:course.GET_COURSE_ERROR
+  }
+}

@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import ThiComponent from "../components/question/question";
 import { connect } from "react-redux";
 import * as action from "../actions/question";
@@ -14,12 +14,14 @@ import { Grid } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import { Redirect } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 function Question(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageNew] = useState(10);
-  const [times, setTimes] = useState(0)
-  const [timess, setTimess] = useState(0)
+  const [times, setTimes] = useState(0);
+  const [timess, setTimess] = useState(0);
   // const [idQ, setIDQ] = useState("")
   var id = props.match.params.id;
   var {
@@ -32,33 +34,34 @@ function Question(props) {
 
   useEffect(() => {
     GET_ALL_DATA();
-    document.title="Phần thi trắc nghiệm ...";
-    if(CategoryDetailStore.data){
-      var count = (((CategoryDetailStore.data.time-1)*60));
 
-    var counter = setInterval(timer, 1000);
-    var count1=60;
-   
-    function timer() {
-      count = count - 1;
-      count1 = count1 - 1;
-      var temp=count;
-      setTimes((Math.ceil(temp/60)));
-      
-      if (count <= 0 && count1 === -1 ) {
-        props.onClickResult({ id, idUSer: iDUserStore });
-        clearInterval(counter);
-        count=0;
-        return;
+    document.title = "Phần thi trắc nghiệm ...";
+    if (CategoryDetailStore.data) {
+      var count = (CategoryDetailStore.data.time - 1) * 60;
+
+      var counter = setInterval(timer, 1000);
+      var count1 = 60;
+
+      function timer() {
+        count = count - 1;
+        count1 = count1 - 1;
+        var temp = count;
+        setTimes(Math.ceil(temp / 60));
+
+        if (count <= 0 && count1 === -1) {
+          props.onClickResult({ id, idUSer: iDUserStore });
+          clearInterval(counter);
+          count = 0;
+          return;
+        }
+        setTimess(count1);
+        if (count1 < 1 && count >= 0) {
+          count1 = 60;
+        } else if (count1 <= 0 && count >= 0) {
+          count1 = -1;
+          return;
+        }
       }
-      setTimess(count1);
-      if (count1 < 1 && count >= 0) {
-        count1=60;
-      }else if(count1 <= 0  && count >= 0){
-        count1=-1;
-        return ;
-      }
-    }
     }
   }, [1]);
   const GET_ALL_DATA = () => {
@@ -113,17 +116,23 @@ function Question(props) {
   };
   const showQuestion = (data) => {
     var result = null;
-    var pageLast=currentPage*currentPageNew;
-    var pageFirst=pageLast- currentPageNew;
+    var pageLast = currentPage * currentPageNew;
+    var pageFirst = pageLast - currentPageNew;
     // data=data.slice(pageFirst,pageLast);
-    var ch=pageFirst;
+    var ch = pageFirst;
     ch--;
     result =
       data &&
       data.map((value, key) => {
         ch++;
         return (
-          <Item key={key} onChange={onChangeResult} ch={ch} stt={key} value={value} />
+          <Item
+            key={key}
+            onChange={onChangeResult}
+            ch={ch}
+            stt={key}
+            value={value}
+          />
         );
       });
     return result;
@@ -152,9 +161,10 @@ function Question(props) {
   const onClickResult = () => {
     props.onClickResult({ id, idUSer: iDUserStore });
   };
+
   return (
     <>
-      <ThiComponent
+      <ThiComponent 
         showPagination={showPagination(QuestionStore)}
         showMap={showMap(QuestionStore)}
         showQuestion={showQuestion(QuestionStore)}

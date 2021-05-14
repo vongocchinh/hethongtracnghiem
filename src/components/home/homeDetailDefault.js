@@ -8,8 +8,8 @@ export default function HomDetailDefault(props) {
     if (data) {
       return (
         <>
-          <p><CheckCircleIcon className="CheckCircleIcon"  color="primary" fontSize="small" /> Xin chào : {data.fullname}</p>
-          <p><CheckCircleIcon className="CheckCircleIcon" color="primary" fontSize="small" /> Mã Sinh Viên : {data.IDSV}</p>
+          <p><CheckCircleIcon className="CheckCircleIcon"  color="primary" fontSize="small" /> Xin chào : <span>{data.fullname}</span></p>
+          <p><CheckCircleIcon className="CheckCircleIcon" color="primary" fontSize="small" /> Mã Sinh Viên : <span>{data.IDSV}</span></p>
           <p><CheckCircleIcon className="CheckCircleIcon" color="primary" fontSize="small" /> Chọn khóa học tương ứng để tham gia thi</p>
         </>
       );

@@ -1,8 +1,10 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
-import CommentIcon from "@material-ui/icons/Comment";
 import { Grid } from "@material-ui/core";
-import GetAppIcon from '@material-ui/icons/GetApp';
+import GetAppIcon from "@material-ui/icons/GetApp";
+import CommentIcon from '@material-ui/icons/Check';
+
+import parser from "html-react-parser";
 export default function item(props) {
   var { value } = props;
   return (
@@ -14,9 +16,9 @@ export default function item(props) {
             <CommentIcon className="CommentIcon" size="small" color="primary" />
           </p>
           <p className="name-header-course-2">
-            <span>Giới thiệu khóa học:</span>
+            <span className="span">Giới thiệu khóa học:</span>
             <br />
-            {value.data.des}.
+            <div>{parser(value.data.des)}</div>
           </p>
           <p className="name-header-course-4">
             <span>Người Đứng Lớp:</span> {value.data.name1}
@@ -30,8 +32,11 @@ export default function item(props) {
           <p className="name-header-course-4">
             <span>Phòng:</span> {value.data.room}
           </p>
-          <p  className="name-header-course-4"><span>Tài liệu:</span>
-            <a target="_bank" href={value.data.document} ><GetAppIcon className="GetAppIcon" size="small" color="primary" /></a>
+          <p className="name-header-course-4">
+            <span>Tài liệu:</span>
+            <a target="_bank" href={value.data.document}>
+              <GetAppIcon className="GetAppIcon" size="small" color="primary" />
+            </a>
           </p>
         </Paper>
       </Grid>

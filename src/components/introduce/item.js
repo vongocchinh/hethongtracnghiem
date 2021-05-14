@@ -12,12 +12,12 @@ export default function item(props) {
           <p>{value.rules}</p>
           <p>Họ tên: {value.name}</p>
           <p>
-            FB :{" "}
+            FaceBook :{" "}
             <a rel="noreferrer" href={value.fb} target="_blank">
               {value.fb}
             </a>
           </p>
-          <p>Phone : {value.phone} </p>
+          <p>Số điện thoại : {value.phone} </p>
           <p>
             Đứng lớp : {value.des}
           </p>

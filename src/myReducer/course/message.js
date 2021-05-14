@@ -22,7 +22,13 @@ var myReducer = (state = initialState, actions) => {
         get_course_success: false,
       };
       return state;
-
+      case types.GET_COURSE_ERROR:
+        state = {
+          get_course_loading: false,
+          get_course_error: true,
+          get_course_success: false,
+        };
+        return state;
     default:
       return state;
   }

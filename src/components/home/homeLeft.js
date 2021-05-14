@@ -34,10 +34,10 @@ export default function HomeLeft(props) {
           <>
             <p className="name-category-home-left">{CategoryDetailStore.data.name}</p>
             <p>Tổng số câu hỏi : {QuestionStore.length}</p>
-            <p>Thời gian lam bài :{CategoryDetailStore.data.time} phút</p>
+            <p>Thời gian lam bài : {CategoryDetailStore.data.time} phút</p>
             <p>Người ra đề : CLB TIN HỌC</p>
             <p>
-              Ngày Biên soạn :
+              Ngày Biên soạn :{" "}
               {new Date(
                 CategoryDetailStore.data.date.seconds * 1000
               ).toDateString()}

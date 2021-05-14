@@ -8,8 +8,8 @@
     align-items: center;
     flex-direction: column;
     h3{
-        color: #1E2F3A;
-        font-size: 26px;
+        color: #44718f;
+        font-size: 20px;
         font-weight: 500;
     }
     .layout-lab-main-product-column{
@@ -24,7 +24,7 @@
         .paper-introduce-lab{
             min-width: 270px;
             max-width: 270px;
-            height: auto;
+            min-height: 380px;
             border: 1px solid rgb(218, 210, 210);
             border-radius: 5px;
             padding: 10px;
@@ -58,6 +58,7 @@
                 margin-bottom: 15px;
                 a{
                     color: #5383D3;
+                    text-decoration: none;
                 }
                 p:nth-child(1){
                     font-weight: 600;
@@ -69,8 +70,8 @@
                 p {
                     font-weight: 400;
                     font-size: 14px;
-                    color:#818181;
-                    line-height: 15px;
+                    color:#110909;
+                    line-height: 1.4;
                     text-align: left;
                     padding-left: 10px;
                     padding-left: 10px;
