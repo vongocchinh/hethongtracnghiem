@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 export default function header(props) {
   const onClickLogout = () => {
@@ -17,16 +17,18 @@ export default function header(props) {
               </Link>
             </h1>
             <nav>
-            <NavLink exact={true} activeClassName='is-active' to="/">
+              <NavLink exact={true} activeClassName="is-active" to="/">
                 Trang Chủ
-              </NavLink >
-              <NavLink  activeClassName='is-active' to="/caulacbo/khoahoc/hoc">
+              </NavLink>
+              <NavLink activeClassName="is-active" to="/caulacbo/khoahoc/hoc">
                 Khóa Học
-              </NavLink >
-              <NavLink  activeClassName='is-active' to="/introduce">
+              </NavLink>
+              <NavLink activeClassName="is-active" to="/introduce">
                 Giới Thiệu
-              </NavLink >
-              <a className="aaa" href="###">{props.UsersAccountStore.fullname} |</a>
+              </NavLink>
+              <a className="aaa" href="###">
+                <u>{props.UsersAccountStore.fullname}</u> |
+              </a>
               <a href="###" onClick={onClickLogout}>
                 Đăng Xuất&nbsp;
                 <ExitToAppIcon className="ExitToAppIcon" />
