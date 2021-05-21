@@ -9,7 +9,7 @@ export default function course(props) {
         <div className="container-layout-home">
           <Grid container spacing={2}>
             <p className="name-header-course">Giới Thiệu Các Khóa Học</p>
-            <Grid item xs={12}>
+            <Grid item className="width-100" >
               <Grid container justify="center" spacing={5}>
                 {props.show}
               </Grid>

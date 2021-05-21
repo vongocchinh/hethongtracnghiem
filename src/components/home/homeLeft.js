@@ -5,6 +5,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
+import { MDBBtn } from "mdb-react-ui-kit";
 // import { Link } from "react-router-dom";
 export default function HomeLeft(props) {
   const [open, setOpen] = useState(false);
@@ -32,7 +33,9 @@ export default function HomeLeft(props) {
       if (CategoryDetailStore.data.rules) {
         return (
           <>
-            <p className="name-category-home-left">{CategoryDetailStore.data.name}</p>
+            <p className="name-category-home-left">
+              {CategoryDetailStore.data.name}
+            </p>
             <p>Tổng số câu hỏi : {QuestionStore.length}</p>
             <p>Thời gian lam bài : {CategoryDetailStore.data.time} phút</p>
             <p>Người ra đề : CLB TIN HỌC</p>
@@ -43,18 +46,27 @@ export default function HomeLeft(props) {
               ).toDateString()}
             </p>
             <div>
-              <a
+              <MDBBtn
+                to={"/thi/" + CategoryDetailStore.id}
+                onClick={handleClickOpen}
+                rounded
+                className="mx-2"
+                mx-2
+              >
+                Bắt Đầu
+              </MDBBtn>
+              {/* <a
                 to={"/thi/" + CategoryDetailStore.id}
                 onClick={handleClickOpen}
                 href="###"
               >
-                Bắt Đầu
-              </a>
+                Bắt Đầu */}
+              {/* </a> */}
             </div>
           </>
         );
-      }else{
-        <p>Lỗi server 404 .</p>
+      } else {
+        <p>Lỗi server 404 .</p>;
       }
     }
     return result;

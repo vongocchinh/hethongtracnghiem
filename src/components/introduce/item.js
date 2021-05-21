@@ -10,7 +10,7 @@ export default function item(props) {
         </div>
         <div className="introduce-detail">
           <p>{value.rules}</p>
-          <p>Họ tên: {value.name}</p>
+          <p>Họ tên : {value.name}</p>
           <p>
             FaceBook :{" "}
             <a rel="noreferrer" href={value.fb} target="_blank">

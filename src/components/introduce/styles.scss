@@ -24,7 +24,7 @@
         .paper-introduce-lab{
             min-width: 270px;
             max-width: 270px;
-            min-height: 380px;
+            min-height: 400px;
             border: 1px solid rgb(218, 210, 210);
             border-radius: 5px;
             padding: 10px;
@@ -54,7 +54,7 @@
             .introduce-detail{
                 width: 100%;
                 min-height: 170px;
-                line-height: 5px;
+                line-height: 1.1;
                 margin-bottom: 15px;
                 a{
                     color: #5383D3;
@@ -76,6 +76,8 @@
                     padding-left: 10px;
                     padding-left: 10px;
                     word-wrap: break-word;
+                    margin-top: 0;
+                    margin-bottom: 0.3rem;
                 }
             }
         }

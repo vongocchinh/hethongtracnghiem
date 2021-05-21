@@ -1,19 +1,16 @@
 import React from "react";
-import './styles.scss';
+import "./styles.scss";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 export default function footer() {
   return (
-    <>
-      <footer className="footer">
-        {/* Copyright */}
-        <div
-          className="text-center"
-        >
-          <a className="text-dark" href="###">
-           CLB TIN HỌC
-          </a>
-        </div>
-        {/* Copyright */}
-      </footer>
-    </>
+    <footer>
+      <div>
+      </div>
+      <div className="text-center p-3 footer">
+        <a classNameName="text-dark-p" href="###">
+          CLB TIN HỌC
+        </a>
+      </div>
+    </footer>
   );
 }
