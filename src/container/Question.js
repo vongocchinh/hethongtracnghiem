@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useRef, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import ThiComponent from "../components/question/question";
 import { connect } from "react-redux";
 import * as action from "../actions/question";
@@ -8,14 +8,14 @@ import * as action2 from "../actions/category";
 import * as action3 from "../actions/result";
 import * as action4 from "../actions/ketqua";
 import * as action5 from "../actions/login";
-// import * as action4 from "../actions/ketqua";
 import Item from "./../components/question/Item";
 import { Grid } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import { Redirect } from "react-router-dom";
-import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { Dialog, DialogActions, CircularProgress } from "@material-ui/core";
+
 
 function Question(props) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,8 +28,9 @@ function Question(props) {
     CategoryDetailStore,
     QuestionStore,
     KetquaStore,
-    iDUserStore,
+    LoginUserStore,
     UsersAccountStore,
+    MessageQuestion
   } = props;
 
   useEffect(() => {
@@ -49,7 +50,7 @@ function Question(props) {
         setTimes(Math.ceil(temp / 60));
 
         if (count <= 0 && count1 === -1) {
-          props.onClickResult({ id, idUSer: iDUserStore });
+          props.onClickResult({ id, idUSer: LoginUserStore });
           clearInterval(counter);
           count = 0;
           return;
@@ -67,8 +68,8 @@ function Question(props) {
   const GET_ALL_DATA = () => {
     props.GET_QUESTION_ALL(id);
     props.GET_CATEGORY_DETAIL(id);
-    props.GET_KET_QUA_SUCCESS(iDUserStore);
-    props.GET_USER(iDUserStore);
+    props.GET_KET_QUA_SUCCESS(LoginUserStore);
+    props.GET_USER(LoginUserStore);
   };
   if (KetquaStore.redirectKetQua) {
     props.resetStoreKetQua();
@@ -159,11 +160,22 @@ function Question(props) {
   };
 
   const onClickResult = () => {
-    props.onClickResult({ id, idUSer: iDUserStore });
+    props.onClickResult({ id, idUSer: LoginUserStore });
   };
-
+  if(MessageQuestion.get_question_success){
+    props.get_question_reset();
+  }
   return (
     <>
+      <Dialog
+          open={MessageQuestion.get_question_loading}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogActions>
+            <CircularProgress />
+          </DialogActions>
+        </Dialog>
       <ThiComponent 
         showPagination={showPagination(QuestionStore)}
         showMap={showMap(QuestionStore)}
@@ -184,8 +196,9 @@ const mapStateToProps = (state) => {
     CategoryDetailStore: state.CategoryDetailStore,
     MessageStore: state.MessageStore,
     KetquaStore: state.KetquaStore,
-    iDUserStore: state.iDUserStore,
+    LoginUserStore: state.LoginUserStore,
     UsersAccountStore: state.UsersAccountStore,
+    MessageQuestion:state.MessageQuestion
   };
 };
 const dispatchToProps = (dispatch, props) => {
@@ -211,6 +224,9 @@ const dispatchToProps = (dispatch, props) => {
     GET_USER: (idUser) => {
       dispatch(action5.USER_GET(idUser));
     },
+    get_question_reset:()=>{
+      dispatch(action.GET_QUESTION_ALL_RESET());
+    }
   };
 };
 export default connect(mapStateToProps, dispatchToProps)(Question);

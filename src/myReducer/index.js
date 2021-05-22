@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import CategoryStore from './category/category';
 import CategoryDetailStore from './category/categoryDetail';
+import MessageCategoryStore from './category/messageCategory';
+import MessageCategoryDetailStore from './category/messageCategoryDetail';
 import QuestionStore from './question/question';
 import MessageQuestion from './question/MessageQuestion';
 import RedirectStore from './redirect/redirect';
@@ -9,18 +11,17 @@ import ResultStore from './result/result';
 import KetquaStore from './result/ketqua';
 import CodeStore from './code/code';
 import LoginStore from './Login/Login';
-import LayoutStore from './Login/layout';
+import LoginUserStore from './Login/loginUser';
 import LogouttStore from './Login/logout';
-import UsersStore from './Login/user';
 import UsersKetquaStore from './ketqua/ketqua';
-import UsersAccountStore from './user';
-import iDUserStore from './user/idUser';
+import UsersAccountStore from './user/user';
 import OnlineStore from './online/online';
+import MessageOnlineStore from './online/message';
 import IntroduceStore from './introducer/introduce';
 import MessageIntroduceStore from './introducer/message';
 import CourseStore from './course/course';
 import CourseMessageStore from './course/message';
-
+import MessageKetQuaStore from './ketqua/message';
 
 
 
@@ -34,17 +35,19 @@ var myReducer=combineReducers({
     KetquaStore,
     CodeStore,
     LoginStore,
-    LayoutStore,
+    LoginUserStore,
     LogouttStore,
-    UsersStore,
     MessageQuestion,
     UsersKetquaStore,
     UsersAccountStore,
-    iDUserStore,
     OnlineStore,
     IntroduceStore,
     CourseStore,
     CourseMessageStore,
-    MessageIntroduceStore
+    MessageIntroduceStore,
+    MessageKetQuaStore,
+    MessageOnlineStore,
+    MessageCategoryStore,
+    MessageCategoryDetailStore
 });
 export default myReducer;

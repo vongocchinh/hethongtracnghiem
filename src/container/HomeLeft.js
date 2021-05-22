@@ -31,15 +31,16 @@ function HomeLeft(props) {
     CategoryDetailStore,
     MessageStore,
     MessageQuestion,
-    iDUserStore,
+    LoginUserStore,
     QuestionStore,
+    MessageCategoryDetailStore
   } = props;
 
   if (MessageStore.ERROR_CODE) {
     toast.error("Ma code khong chinh xac");
   }
   const checkCode = (e) => {
-    var data = { e, idCategory: id, iDUser: iDUserStore };
+    var data = { e, idCategory: id, iDUser: LoginUserStore };
     props.getCode(data);
   };
   useEffect(() => {
@@ -51,6 +52,9 @@ function HomeLeft(props) {
     props.resetMessageGetQuestion();
     return <Redirect to={"/thi/" + id} />;
   }
+  if(MessageCategoryDetailStore.GET_CATEGORY_DETAIL_SUCCESS){
+    props.GET_CATEGORY_DETAIL_RESET();
+  }
   if (MessageQuestion.get_question_error) {
     props.resetMessageGetQuestion();
     toast.dark("Lỗi code nhập không chính xác ");
@@ -60,10 +64,12 @@ function HomeLeft(props) {
     toast.dark("Lỗi hệ thống !!!");
   }
 
-  console.log(MessageQuestion.get_question_error_rules);
   if (MessageQuestion.get_question_error_rules) {
     toast.success("Bạn không có quyền truy cập !!!");
     props.resetMessageGetQuestion();
+  }
+  if(!LoginUserStore){
+    return <Redirect to="/login" />
   }
   if (MessageQuestion.get_question_success_error) {
     setTimeout(() => {
@@ -94,7 +100,7 @@ function HomeLeft(props) {
           </DialogContent>
         </Dialog>
       <Dialog
-        open={MessageQuestion.get_question_loading}
+        open={MessageQuestion.get_question_loading||MessageCategoryDetailStore.GET_CATEGORY_DETAIL_LOADING}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -117,8 +123,9 @@ const mapStateToProps = (state) => {
     KetquaStore: state.KetquaStore,
     CodeStore: state.CodeStore,
     MessageQuestion: state.MessageQuestion,
-    iDUserStore: state.iDUserStore,
     QuestionStore: state.QuestionStore,
+    LoginUserStore:state.LoginUserStore,
+    MessageCategoryDetailStore:state.MessageCategoryDetailStore
   };
 };
 const dispatchToProps = (dispatch, props) => {
@@ -147,6 +154,9 @@ const dispatchToProps = (dispatch, props) => {
     GET_QUESTION_LENGTH: (id) => {
       dispatch(action5.GET_QUESTION_ALL(id));
     },
+    GET_CATEGORY_DETAIL_RESET:()=>{
+      dispatch(action.GET_CATEGORY_DETAIL_RESET());
+    }
   };
 };
 export default connect(mapStateToProps, dispatchToProps)(HomeLeft);

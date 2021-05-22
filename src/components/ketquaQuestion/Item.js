@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 export default function Item(props) {
   const onClickLogout = () => {
     props.onClickLogout();
@@ -26,12 +27,16 @@ export default function Item(props) {
             </tbody>
           </table>
           <div className="option-kq">
-            <Link className="option-kq-btn" to="/">
+
+            <Link  to="/">
+              <Button variant="contained" color="secondary">
               Trang Chủ
+              </Button>
             </Link>
-            <p onClick={onClickLogout} className="option-kq-btn">
+            &nbsp;
+            <Button variant="contained" color="primary" onClick={onClickLogout}  >
               Đăng Xuất
-            </p>
+            </Button>
           </div>
         </div>
       </div>

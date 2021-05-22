@@ -5,7 +5,7 @@ import { db } from "./../config/fbConfig";
 
 export const GET_CATEGORY_ALL = () => {
   return (dispatch, getState, { getFirebase }) => {
-    dispatch(GET_CATEGORY_ALL_ERROR());
+    dispatch(GET_CATEGORY_ALL_LOADING());
     var data = [];
     var item;
     // var user=firebase.auth().currentUser;
@@ -55,6 +55,15 @@ export const GET_CATEGORY_ALL_SUCCESS = (data) => {
   };
 };
 
+export const GET_CATEGORY_ALL_RESET=()=>{
+  return {
+    type:types.GET_CATEGORY_ALL_RESET
+  }
+}
+
+
+
+
 export const GET_CATEGORY_DETAIL_SUCCESS = (data) => {
   return {
     type: types.GET_CATEGORY_DETAIL_SUCCESS,
@@ -87,8 +96,16 @@ export const GET_CATEGORY_DETAIL = (id) => {
       });
   };
 };
+
 export const GET_CATEGORY_DETAIL_LOADING = () => {
   return {
     type: types.GET_CATEGORY_DETAIL_LOADING,
   };
 };
+
+
+export const GET_CATEGORY_DETAIL_RESET=()=>{
+  return {
+    type:types.GET_CATEGORY_DETAIL_RESET
+  }
+}

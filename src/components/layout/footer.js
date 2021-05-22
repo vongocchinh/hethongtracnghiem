@@ -4,10 +4,9 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 export default function footer() {
   return (
     <footer>
-      <div>
-      </div>
+      <div></div>
       <div className="text-center p-3 footer">
-        <a classNameName="text-dark-p" href="###">
+        <a className="text-dark-p" href="###">
           CLB TIN HỌC
         </a>
       </div>

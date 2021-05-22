@@ -48,3 +48,9 @@ export const GET_QUESTION_ALL_ERROR = () => {
   };
 };
 
+
+export const GET_QUESTION_ALL_RESET=()=>{
+  return {
+    type:types.GET_QUESTION_ALL_RESET
+  }
+}

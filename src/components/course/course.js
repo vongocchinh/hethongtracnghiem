@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 
 export default function course(props) {
   return (

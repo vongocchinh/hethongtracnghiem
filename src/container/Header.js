@@ -4,19 +4,24 @@ import HeaderComponent from "./../components/layout/header";
 import { connect } from "react-redux";
 import * as action from "./../actions/login";
 import * as action2 from "./../actions/ketqua";
+import * as action3 from "./../actions/code";
 import { Redirect } from "react-router-dom";
 import { useEffect } from "react";
 function Header(props) {
-  var { LayoutStore, UsersAccountStore, iDUserStore } = props;
+  var { LoginUserStore, UsersAccountStore } = props;
+  // console.log(LoginUserStore);
   useEffect(() => {
-    props.GET_USER(iDUserStore);
-  });
-  if (!LayoutStore) {
+    if (LoginUserStore) {
+      props.GET_USER(LoginUserStore);
+      props.GET_ID_USER(LoginUserStore);
+    }
+  },[1]);
+  if (!LoginUserStore) {
     return <Redirect to="/login" />;
   }
   
   const onClickLogout = () => {
-    var idUser = iDUserStore;
+    var idUser = LoginUserStore;
     props.onClickLogout(idUser);
   };
   return (
@@ -31,7 +36,7 @@ function Header(props) {
 
 const mapStateToProps = (state) => {
   return {
-    LayoutStore: state.LayoutStore,
+    LoginUserStore: state.LoginUserStore,
     UsersAccountStore: state.UsersAccountStore,
     iDUserStore: state.iDUserStore,
     LogouttStore:state.LogouttStore
@@ -46,6 +51,9 @@ const dispatchToProps = (dispatch, props) => {
       dispatch(action.USER_GET(idUser));
       dispatch(action2.GET_KET_QUA_USER(idUser));
     },
+    GET_ID_USER:(id)=>{
+      dispatch(action3.GET_ID_USER(id));
+    }
   };
 };
 export default connect(mapStateToProps, dispatchToProps)(Header);

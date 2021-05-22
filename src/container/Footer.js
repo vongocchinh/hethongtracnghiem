@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 function Footer(props){
-    var {LayoutStore}=props;
-    if(!LayoutStore){
+    var {LoginUserStore}=props;
+    if(!LoginUserStore){
         return <Redirect to="/login" />
     }
     return (
@@ -18,7 +18,7 @@ function Footer(props){
 
 const mapStateToProps=(state)=>{
     return {
-        LayoutStore:state.LayoutStore
+        LoginUserStore:state.LoginUserStore
     }
 }
 const dispatchToProps=(dispatch,props)=>{

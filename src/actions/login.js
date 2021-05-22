@@ -12,15 +12,11 @@ export const LOGIN_USER = (e) => {
       .then((res) => {
         var user = firebase.auth().currentUser;
         if (user) {
-          
           db.collection("user")
             .where("uidAuthentication", "==", user.uid)
             .get()
             .then((querySnapshot) => {
               querySnapshot.forEach(function (doc) {
-                var userArray = {
-                  idUser: doc.id,
-                };
                 db.collection("user")
                   .doc(doc.id)
                   .set({
@@ -33,12 +29,11 @@ export const LOGIN_USER = (e) => {
                     count: doc.data().count,
                     online: true,
                     categoryId: doc.data().categoryId,
-                    quyen:doc.data().quyen
+                    quyen: doc.data().quyen,
                   })
                   .then((res) => {
-                    dispatch(ID_USER(user.uid));
-                    localStorage.setItem("apiuid", JSON.stringify(userArray));
-                    dispatch(LOGIN_SUCCESS(userArray));
+                    localStorage.setItem("user", JSON.stringify(doc.id));
+                    dispatch(LOGIN_SUCCESS(doc.id));
                   })
                   .catch((er) => {});
               });
@@ -73,12 +68,10 @@ export const LOGIN_REQUEST = () => {
 export const USER_GET = (idUser) => {
   return (dispatch, getState, { getFirebase }) => {
     db.collection("user")
-      .where("uidAuthentication", "==", idUser)
+      .doc(idUser)
       .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach(function (doc) {
-          dispatch(USER_GET_SUCCESS(doc.data()));
-        });
+      .then((res) => {
+        dispatch(USER_GET_SUCCESS(res.data()));
       });
   };
 };
@@ -107,49 +100,48 @@ export const LOGOUT_USER = (idUser) => {
   return (dispatch, getState, { getFirebase }) => {
     dispatch(LOGOUT_REQUEST());
 
-    db.collection("user")
-      .where("uidAuthentication", "==", idUser)
+
+
+    firebase
+    .auth()
+    .signOut()
+    .then(() => {
+
+      db.collection("user")
+      .doc(idUser)
       .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach(function (doc) {
-          db.collection("user")
-            .doc(doc.id)
-            .set({
-              IDSV: doc.data().IDSV,
-              fullname: doc.data().fullname,
-              rules: doc.data().rules,
-              uidAuthentication: doc.data().uidAuthentication,
-              itemR: doc.data().itemR,
-              itemW: doc.data().itemW,
-              count: doc.data().count,
-              online: false,
-              categoryId: doc.data().categoryId,
-              quyen:doc.data().quyen
-            })
-            .then((res) => {
-              firebase
-                .auth()
-                .signOut()
-                .then(() => {
-                  var user = firebase.auth.currentUser;
-                  localStorage.removeItem("apiuid");
-                  if (!user) {
-                    dispatch(LOGOUT_SUCCESS());
-                  }
-                  localStorage.removeItem("apiuid");
-                  localStorage.clear();
-                  dispatch(USER_GET());
-                })
-                .catch(() => {
-                  dispatch(LOGOUT_ERROR());
-                });
-            })
-            .catch((er) => {});
-        });
+      .then((doc) => {
+        db.collection("user")
+          .doc(doc.id)
+          .set({
+            IDSV: doc.data().IDSV,
+            fullname: doc.data().fullname,
+            rules: doc.data().rules,
+            uidAuthentication: doc.data().uidAuthentication,
+            itemR: doc.data().itemR,
+            itemW: doc.data().itemW,
+            count: doc.data().count,
+            online: false,
+            categoryId: doc.data().categoryId,
+            quyen: doc.data().quyen,
+          })
+          .then((res) => {
+            var user = firebase.auth.currentUser;
+            localStorage.removeItem("user");
+            if (!user) {
+              dispatch(LOGOUT_SUCCESS());
+            }
+            localStorage.removeItem("user");
+            localStorage.clear();
+          })
+          .catch((er) => {});
       })
-      .catch(function (error) {
-        console.log("Error getting documents: ", error);
-      });
+      .catch((err) => {});
+    })
+    .catch(() => {
+      dispatch(LOGOUT_ERROR());
+    });
+
   };
 };
 

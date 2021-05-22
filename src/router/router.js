@@ -13,7 +13,7 @@ export default function router() {
       <Switch>
         <Route exact path="/" component={HomeContainer}></Route>
         <Route path="/thi/:id" component={Question} ></Route>
-        <Route path="/login" component={LoginContainer} ></Route>
+        <Route path='/login' component={LoginContainer} ></Route>
         <Route component={HomeContainer}  path="/category/:id" ></Route>
         <Route component={ketquaContainer} path="/ketqua/:id"></Route>
         <Route component={Introduce} path="/introduce"></Route>

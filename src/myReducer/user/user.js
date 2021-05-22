@@ -1,4 +1,4 @@
-import * as types from "./../constanst/login";
+import * as types from "../../constanst/login";
 
 // var data = JSON.parse(localStorage.getItem("arrResult"));
 var initialState = {};

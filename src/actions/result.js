@@ -31,7 +31,7 @@ export const onClickResult = ({ id, idUSer }) => {
           for (let i = 0; i < dataResult.length; i++) {
             for (let j = 0; j < data.length; j++) {
               if (dataResult[i].da === data[j].data.result) {
-                count += 5;
+                count += 1;
                 itemR++;
               }
             }
@@ -40,13 +40,13 @@ export const onClickResult = ({ id, idUSer }) => {
           count = 0;
           itemR = 0;
         }
+        var countMath=(Math.round(((itemR/data.length)*100) * 100) / 100)/10;
         var itemW = data.length - itemR;
         if (idUSer) {
           db.collection("user")
-            .where("uidAuthentication", "==", idUSer)
+            .doc(idUSer)
             .get()
-            .then((querySnapshot) => {
-              querySnapshot.forEach(function (doc) {
+            .then((doc) => {
                 var idU = doc.id;
                 db.collection("user")
                   .doc(idU)
@@ -55,7 +55,7 @@ export const onClickResult = ({ id, idUSer }) => {
                     fullname: doc.data().fullname,
                     rules: doc.data().rules,
                     uidAuthentication: doc.data().uidAuthentication,
-                    count,
+                    count:countMath,
                     itemR,
                     itemW,
                     online: doc.data().online,
@@ -89,7 +89,6 @@ export const onClickResult = ({ id, idUSer }) => {
                       .catch((er) => {});
                   })
                   .catch((er) => {});
-              });
             });
         }
 

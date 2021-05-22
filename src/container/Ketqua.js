@@ -10,14 +10,14 @@ import { Dialog ,DialogActions ,CircularProgress} from '@material-ui/core';
 
 function Ketqua(props) {
   var id = props.match.params.id;
-  var { QuestionStore, LayoutStore, UsersKetquaStore,iDUserStore ,UsersAccountStore} = props;
+  var { QuestionStore, UsersKetquaStore,LoginUserStore ,UsersAccountStore , MessageKetQuaStore} = props;
   useEffect(() => {
     document.title="Kết quả phần thi của sinh viên ...";
     props.getDataQuestion(id);
-    props.GET_KET_QUA(iDUserStore);
-    props.GET_DATA_USER(iDUserStore);
+    props.GET_KET_QUA(LoginUserStore);
+    props.GET_DATA_USER(LoginUserStore);
   }, [1]);
-  if (!LayoutStore) {
+  if (!LoginUserStore) {
     return <Redirect to="/login" />;
   }
   const show = (data, QuestionStore) => {
@@ -28,21 +28,23 @@ function Ketqua(props) {
           <td>{data.itemR}</td>
           <td>{data.itemW}</td>
           <td>{Math.round(((data.itemR/QuestionStore.length)*100) * 100) / 100} %</td>
-          <td>{data.count}</td>
+          <td>{(Math.round(((data.itemR/QuestionStore.length)*100) * 100) / 100)/10}</td>
         </>
       );
     }
   };
   
   const onClickLogout=()=>{
-    var idUser = iDUserStore;
+    var idUser = LoginUserStore;
     props.onClickLogout(idUser);
   }
-
+  if(MessageKetQuaStore.GET_RESULT_SUCCESS){
+    props.RESET_MESSAGE_RESULT();
+  }
   return (
     <>
      <Dialog
-        open={props.LogouttStore.logout_loading}
+        open={props.LogouttStore.logout_loading||MessageKetQuaStore.GET_RESULT_SUCCESS}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -66,16 +68,16 @@ const mapStateToProps = (state) => {
     QuestionStore: state.QuestionStore,
     LayoutStore: state.LayoutStore,
     UsersKetquaStore: state.UsersKetquaStore,
-    iDUserStore:state.iDUserStore,
     UsersAccountStore:state.UsersAccountStore,
-    LogouttStore:state.LogouttStore
+    LogouttStore:state.LogouttStore,
+    LoginUserStore:state.LoginUserStore,
+    MessageKetQuaStore:state.MessageKetQuaStore
   };
 };
 const dispatchToProps = (dispatch, props) => {
   return {
     getDataQuestion: (id) => {
       dispatch(action.GET_QUESTION_ALL(id));
-      
     },
     GET_DATA_USER:(idUser)=>{
       dispatch(action2.GET_KET_QUA_USER(idUser));
@@ -85,6 +87,9 @@ const dispatchToProps = (dispatch, props) => {
     },
     onClickLogout:(idUser)=>{
       dispatch(action3.LOGOUT_USER(idUser));
+    },
+    RESET_MESSAGE_RESULT:()=>{
+      dispatch(action2.RESET_MESSAGE_RESULT());
     }
   };
 };

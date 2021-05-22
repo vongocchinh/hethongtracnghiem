@@ -41,6 +41,7 @@
                 padding-top: 5px;
                 padding-bottom: 5px;
                 font-weight: 550;
+                text-align:center;
             }
             td{
                 text-align: center;
@@ -60,6 +61,10 @@
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
+    p {
+        margin-top: 0;
+        margin-bottom: 0rem; 
+    }
     .option-kq-btn{
         width: 100px;
         text-align: center;
