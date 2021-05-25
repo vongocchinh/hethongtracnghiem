@@ -232,7 +232,7 @@ html, body {width: 100%;height: 100%;}
     }
 }
 
-$res_890: "only screen and (max-width: 890px)";
+$res_890: "only screen and (max-width: 992px)";
 
 @mixin responsive_890() {
     @media #{$res_890} {
@@ -286,7 +286,7 @@ $res_890: "only screen and (max-width: 890px)";
     }
 }
 
-$res_650: "only screen and (max-width: 650px)";
+$res_650: "only screen and (max-width: 770px)";
 
 @mixin responsive_650() {
     @media #{$res_650} {
@@ -401,3 +401,12 @@ $res_500: "only screen and (max-width: 500px)";
 //         max-width: 900px;
 //     }
 // }
+
+.dialogContainer{
+    width:100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}

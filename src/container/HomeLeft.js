@@ -104,8 +104,8 @@ function HomeLeft(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogActions>
-          <CircularProgress />
+        <DialogActions >
+          <CircularProgress  />
         </DialogActions>
       </Dialog>
       <HomeLeftComponent

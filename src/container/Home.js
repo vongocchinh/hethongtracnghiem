@@ -14,7 +14,13 @@ import OnlineComponent from "./../components/home/online/online";
 import * as action5 from "./../actions/online";
 import { Dialog, DialogActions, CircularProgress } from "@material-ui/core";
 function Home(props) {
-  var { CategoryStore, LoginUserStore, OnlineStore ,MessageOnlineStore,MessageCategoryStore} = props;
+  var {
+    CategoryStore,
+    LoginUserStore,
+    OnlineStore,
+    MessageOnlineStore,
+    MessageCategoryStore,
+  } = props;
   useEffect(() => {
     document.title = "Trang chủ hệ thống thi trắc nghiệm ...";
     props.GET_CATEGORY();
@@ -24,12 +30,12 @@ function Home(props) {
     }
   }, [1]);
   if (!LoginUserStore) {
-    return <Redirect to="/login" />
+    return <Redirect to="/login" />;
   }
-  if(MessageOnlineStore.GET_USER_ONLINE_SUCCESS){
+  if (MessageOnlineStore.GET_USER_ONLINE_SUCCESS) {
     props.GET_USER_ONLINE_RESET();
   }
-  if(MessageCategoryStore.GET_CATEGORY_ALL_SUCCESS){
+  if (MessageCategoryStore.GET_CATEGORY_ALL_SUCCESS) {
     props.GET_CATEGORY_ALL_RESET();
   }
   const showCategory = (data) => {
@@ -58,18 +64,34 @@ function Home(props) {
     }
     return result;
   };
+  const showDialog = (
+    LogouttStore,
+    MessageOnlineStore,
+    MessageCategoryStore
+  ) => {
+    if (
+      LogouttStore.logout_loading ||
+      MessageOnlineStore.GET_USER_ONLINE_LOADING ||
+      MessageCategoryStore.GET_CATEGORY_ALL_LOADING
+    ) {
+      return (
+        <Dialog
+          open={
+           true
+          }
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogActions>
+            <CircularProgress />
+          </DialogActions>
+        </Dialog>
+      );
+    }
+  };
   return (
     <>
-    
-      <Dialog
-        open={props.LogouttStore.logout_loading||MessageOnlineStore.GET_USER_ONLINE_LOADING||MessageCategoryStore.GET_CATEGORY_ALL_LOADING}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogActions>
-          <CircularProgress />
-        </DialogActions>
-      </Dialog>
+      {showDialog(props.LogouttStore, MessageOnlineStore, MessageCategoryStore)}
       <HomeComponent
         showCategory={showCategory(CategoryStore)}
         showOnline={showOnline(OnlineStore && OnlineStore)}
@@ -86,8 +108,8 @@ const mapStateToProps = (state) => {
     LoginStore: state.LoginStore,
     OnlineStore: state.OnlineStore,
     LogouttStore: state.LogouttStore,
-    MessageOnlineStore:state.MessageOnlineStore,
-    MessageCategoryStore:state.MessageCategoryStore,
+    MessageOnlineStore: state.MessageOnlineStore,
+    MessageCategoryStore: state.MessageCategoryStore,
   };
 };
 
@@ -96,7 +118,7 @@ const dispatchToProps = (dispatch, props) => {
     GET_CATEGORY: () => {
       dispatch(actionQuestion.GET_CATEGORY_ALL());
     },
-    GET_CATEGORY_ALL_RESET:()=>{
+    GET_CATEGORY_ALL_RESET: () => {
       dispatch(actionQuestion.GET_CATEGORY_ALL_RESET());
     },
     setRedirectReset: () => {
@@ -108,12 +130,12 @@ const dispatchToProps = (dispatch, props) => {
     GET_USER_ONLINE: () => {
       dispatch(action5.GET_USER_ONLINE());
     },
-    GET_ID_USER:(id)=>{
+    GET_ID_USER: (id) => {
       dispatch(action3.GET_ID_USER(id));
     },
-    GET_USER_ONLINE_RESET:()=>{
+    GET_USER_ONLINE_RESET: () => {
       dispatch(action5.GET_USER_ONLINE_RESET());
-    }
+    },
   };
 };
 export default connect(mapStateToProps, dispatchToProps)(Home);
